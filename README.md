@@ -1,8 +1,10 @@
 # Equivset
+
 A mapping of "equivalent" characters to prevent spoofing.
 
 ## Usage
-```php
+
+<pre lang="php">
 use Wikimedia\Equivset\Equivset;
 
 $equivset = new Equivset();
@@ -22,9 +24,10 @@ foreach ( $equivset as $char => $equiv ) {
 
 // Get the entire set.
 $all = $equivset->all();
-```
+</pre>
 
 ## Contributing
+
 All changes should be made to `./data/equivset.in`. Then run
 `bin/console generate-equivset` to generate the JSON, serialized, and plain
 text versions of the equivset in `./dist`.
