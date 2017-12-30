@@ -28,7 +28,7 @@
 		"wikimedia/utfnormal": "^1.1.0"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "^13.0.0",
+		"mediawiki/mediawiki-codesniffer": "15.0.0",
 		"symfony/console": "^3.3",
 		"symfony/var-dumper": "^3.3",
 		"phpunit/phpunit": "^4.8",
@@ -41,7 +41,10 @@
 			"parallel-lint . --exclude vendor",
 			"phpcs -p -s ."
 		],
-		"fix": "phpcbf",
+		"fix": [
+			"phpcbf",
+			"phpcbf"
+		],
 		"test": [
 			"@lint",
 			"phpunit"
