@@ -2,7 +2,7 @@
 	"name": "wikimedia/equivset",
 	"description": "Visually Equivalent Set of UTF-8 Characters",
 	"homepage": "https://www.mediawiki.org/wiki/Equivset",
-	"license": "GPL-2.0+",
+	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Brion Vibber",
