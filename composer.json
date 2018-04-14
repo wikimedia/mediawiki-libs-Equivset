@@ -28,7 +28,7 @@
 		"wikimedia/utfnormal": "^1.1.0 || ^2.0.0"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "17.0.0",
+		"mediawiki/mediawiki-codesniffer": "18.0.0",
 		"symfony/console": "^3.3",
 		"symfony/var-dumper": "^3.3",
 		"phpunit/phpunit": "4.8.36 || ^6.5",
