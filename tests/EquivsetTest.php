@@ -20,6 +20,7 @@ namespace Wikimedia\Equivset;
 
 use PHPUnit\Framework\TestCase;
 use org\bovigo\vfs\vfsStream;
+use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**
  * Equiveset
@@ -93,13 +94,12 @@ class EquivsetTest extends TestCase {
 	 *
 	 * Ensure that a non-existant file will throw an EquivsetException when data
 	 * is loaded.
-	 *
-	 * @expectedException \Wikimedia\Equivset\Exception\EquivsetException
-	 * @expectedExceptionMessage Serialized equivset is missing
 	 */
 	public function testLoadFailNoFile() {
 		$root = vfsStream::setup();
 		$equivset = new Equivset( [], $root->url() . '/missing' );
+		$this->expectException( EquivsetException::class );
+		$this->expectExceptionMessage( 'Serialized equivset is missing' );
 		$equivset->all();
 	}
 
@@ -108,8 +108,6 @@ class EquivsetTest extends TestCase {
 	 *
 	 * Ensure that an unreadable file will throw an EquivsetException when data is
 	 * loaded.
-	 * @expectedException \Wikimedia\Equivset\Exception\EquivsetException
-	 * @expectedExceptionMessage Serialized equivset is unreadable
 	 */
 	public function testLoadFailUnreadableFile() {
 		$root = vfsStream::setup();
@@ -117,6 +115,8 @@ class EquivsetTest extends TestCase {
 			->withContent( serialize( $this->data ) )
 			->at( $root );
 		$equivset = new Equivset( [], $file->url() );
+		$this->expectException( EquivsetException::class );
+		$this->expectExceptionMessage( 'Serialized equivset is unreadable' );
 		$equivset->all();
 	}
 
@@ -125,8 +125,6 @@ class EquivsetTest extends TestCase {
 	 *
 	 * Ensure that a file that cannot be unserialized will throw an
 	 * EquivsetException when data is loaded.
-	 * @expectedException \Wikimedia\Equivset\Exception\EquivsetException
-	 * @expectedExceptionMessage Unserializing serialized equivset failed
 	 */
 	public function testLoadFailUnseriableFile() {
 		$root = vfsStream::setup();
@@ -134,6 +132,8 @@ class EquivsetTest extends TestCase {
 			->withContent( '' )
 			->at( $root );
 		$equivset = new Equivset( [], $file->url() );
+		$this->expectException( EquivsetException::class );
+		$this->expectExceptionMessage( 'Unserializing serialized equivset failed' );
 		$equivset->all();
 	}
 
@@ -209,10 +209,9 @@ class EquivsetTest extends TestCase {
 
 	/**
 	 * Test Get Fail.
-	 *
-	 * @expectedException \LogicException
 	 */
 	public function testGetFail() {
+		$this->expectException( \LogicException::class );
 		$this->getEquivset()->get( 'fail' );
 	}
 

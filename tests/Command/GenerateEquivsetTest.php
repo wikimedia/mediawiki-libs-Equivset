@@ -104,9 +104,6 @@ class GenerateEquivsetTest extends TestCase {
 
 	/**
 	 * Test Execute Fail Open
-	 *
-	 * @expectedException \Exception
-	 * @expectedExceptionMessage Unable to open equivset.in
 	 */
 	public function testExecuteFailOpen() {
 		$root = vfsStream::setup();
@@ -124,6 +121,8 @@ class GenerateEquivsetTest extends TestCase {
 		$output = $this->getMockBuilder( OutputInterface::class )
 			->getMock();
 
+		$this->expectException( \Exception::class );
+		$this->expectExceptionMessage( 'Unable to open equivset.in' );
 		$command->execute( $input, $output );
 	}
 
