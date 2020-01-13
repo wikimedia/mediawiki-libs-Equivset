@@ -18,8 +18,8 @@
 
 namespace Wikimedia\Equivset;
 
-use PHPUnit\Framework\TestCase;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**

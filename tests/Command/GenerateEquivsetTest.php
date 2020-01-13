@@ -64,7 +64,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$status = $command->execute( $input, $output );
 
-		$this->assertEquals( 0, $status );
+		$this->assertSame( 0, $status );
 
 		$this->assertTrue( $dist->hasChild( 'equivset.ser' ) );
 		$this->assertTrue( $dist->hasChild( 'equivset.json' ) );
@@ -91,7 +91,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$status = $command->execute( $input, $output );
 
-		$this->assertEquals( 0, $status );
+		$this->assertSame( 0, $status );
 
 		$this->assertTrue( $dist->hasChild( 'equivset.ser' ) );
 		$this->assertTrue( $dist->hasChild( 'equivset.json' ) );
