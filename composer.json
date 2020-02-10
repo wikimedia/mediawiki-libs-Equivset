@@ -28,8 +28,8 @@
 		"wikimedia/utfnormal": "^1.1.0 || ^2.0.0"
 	},
 	"require-dev": {
-		"symfony/console": "^3.3",
-		"symfony/var-dumper": "^3.3",
+		"symfony/console": "^3.3 || ^4 || ^5",
+		"symfony/var-dumper": "^3.3 || ^4 || ^5",
 		"jakub-onderka/php-parallel-lint": "1.0.0",
 		"mikey179/vfsstream": "^1.6",
 		"jakub-onderka/php-console-highlighter": "0.4.0",
