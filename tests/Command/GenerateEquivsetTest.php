@@ -160,7 +160,7 @@ class GenerateEquivsetTest extends TestCase {
 			) );
 		$status = $command->execute( $input, $output );
 
-		$this->assertEquals( 1, $status );
+		$this->assertSame( 1, $status );
 
 		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
 	}
@@ -215,7 +215,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$status = $command->execute( $input, $output );
 
-		$this->assertEquals( 1, $status );
+		$this->assertSame( 1, $status );
 
 		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
 	}
@@ -270,7 +270,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$status = $command->execute( $input, $output );
 
-		$this->assertEquals( 1, $status );
+		$this->assertSame( 1, $status );
 
 		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
 	}
