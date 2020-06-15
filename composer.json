@@ -41,7 +41,7 @@
 	"scripts": {
 		"test": [
 			"parallel-lint . --exclude vendor",
-			"phpunit",
+			"php -d 'zend_extension=xdebug.so' vendor/bin/phpunit",
 			"covers-validator",
 			"phpcs -sp",
 			"minus-x check ."
