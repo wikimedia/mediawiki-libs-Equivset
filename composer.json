@@ -28,7 +28,7 @@
 		"wikimedia/utfnormal": "^1.1.0 || ^2.0.0"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "31.0.0",
+		"mediawiki/mediawiki-codesniffer": "33.0.0",
 		"mediawiki/minus-x": "1.1.0",
 		"mikey179/vfsstream": "^1.6",
 		"ockcyp/covers-validator": "1.1.1",
