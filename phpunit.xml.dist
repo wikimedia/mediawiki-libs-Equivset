@@ -1,4 +1,8 @@
-<phpunit colors="true"
+<?xml version="1.0"?>
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+	colors="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutChangesToGlobalState="true"
 	beStrictAboutOutputDuringTests="true">
@@ -15,4 +19,12 @@
 			<directory suffix=".php">./src</directory>
 		</whitelist>
 	</filter>
+	<coverage includeUncoveredFiles="true">
+		<include>
+			<directory suffix=".php">./src</directory>
+		</include>
+		<report>
+			<clover outputFile="./coverage/clover.xml"/>
+		</report>
+	</coverage>
 </phpunit>
