@@ -29,6 +29,7 @@
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "38.0.0",
+		"mediawiki/mediawiki-phan-config": "0.11.1",
 		"mediawiki/minus-x": "1.1.1",
 		"mikey179/vfsstream": "^1.6",
 		"ockcyp/covers-validator": "1.3.3",
@@ -46,6 +47,7 @@
 			"covers-validator",
 			"coverage-check ./coverage/clover.xml 100",
 			"@phpcs",
+			"phan --allow-polyfill-parser --long-progress-bar",
 			"minus-x check ."
 		],
 		"cover": "phpunit --coverage-html coverage",
@@ -53,6 +55,7 @@
 			"minus-x fix .",
 			"phpcbf"
 		],
+		"phan": "phan --allow-polyfill-parser --long-progress-bar",
 		"phpcs": "phpcs -sp"
 	}
 }

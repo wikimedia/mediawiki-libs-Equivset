@@ -26,6 +26,11 @@ use Wikimedia\Equivset\Exception\EquivsetException;
 class Equivset implements EquivsetInterface, \IteratorAggregate {
 
 	/**
+	 * @var array
+	 */
+	protected $data;
+
+	/**
 	 * @var string
 	 */
 	protected $serializedPath;
@@ -38,7 +43,7 @@ class Equivset implements EquivsetInterface, \IteratorAggregate {
 	 */
 	public function __construct( array $data = [], $serializedPath = '' ) {
 		$this->data = $data;
-		$this->serializedPath = $serializedPath ? $serializedPath : __DIR__ . '/../dist/equivset.ser';
+		$this->serializedPath = $serializedPath ?: __DIR__ . '/../dist/equivset.ser';
 	}
 
 	/**
@@ -73,7 +78,7 @@ class Equivset implements EquivsetInterface, \IteratorAggregate {
 	 * @param string $str1 The first string.
 	 * @param string $str2 The second string.
 	 *
-	 * @return string
+	 * @return bool
 	 */
 	public function isEqual( $str1, $str2 ) {
 		return $this->normalize( $str1 ) === $this->normalize( $str2 );
