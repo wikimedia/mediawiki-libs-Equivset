@@ -18,6 +18,7 @@
 
 namespace Wikimedia\Equivset;
 
+use ArrayIterator;
 use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**
@@ -119,10 +120,10 @@ class Equivset implements EquivsetInterface, \IteratorAggregate {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * @return \Traversable The complete Equivset.
+	 * @return ArrayIterator The complete Equivset.
 	 */
-	public function getIterator() {
-		return new \ArrayIterator( $this->all() );
+	public function getIterator(): ArrayIterator {
+		return new ArrayIterator( $this->all() );
 	}
 
 	/**
