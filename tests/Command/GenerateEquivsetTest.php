@@ -231,7 +231,7 @@ class GenerateEquivsetTest extends TestCase {
 	}
 
 	/**
-	 * Test Execute Failure Invalid Charachter
+	 * Test Execute Failure Invalid Character
 	 *
 	 * Ensure that invalid UTF-8 characters results in a failure of the
 	 * generate-equivset command.

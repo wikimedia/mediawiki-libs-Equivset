@@ -19,12 +19,14 @@
 namespace Wikimedia\Equivset;
 
 use ArrayIterator;
+use IteratorAggregate;
+use LogicException;
 use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**
  * Default Equivset
  */
-class Equivset implements EquivsetInterface, \IteratorAggregate {
+class Equivset implements EquivsetInterface, IteratorAggregate {
 
 	/**
 	 * @var array
@@ -39,7 +41,7 @@ class Equivset implements EquivsetInterface, \IteratorAggregate {
 	/**
 	 * Equivset
 	 *
-	 * @param array $data Equalvalent Set
+	 * @param array $data Equivalent Set
 	 * @param string $serializedPath Path of the serialized equivset array.
 	 */
 	public function __construct( array $data = [], $serializedPath = '' ) {
@@ -105,13 +107,13 @@ class Equivset implements EquivsetInterface, \IteratorAggregate {
 	 *
 	 * @return string The equivalent character.
 	 *
-	 * @throws \LogicException If character does not exist.
+	 * @throws LogicException If character does not exist.
 	 */
 	public function get( $key ) {
 		$data = $this->all();
 
 		if ( !array_key_exists( $key, $data ) ) {
-			throw new \LogicException( 'Equivalent Character Not Found' );
+			throw new LogicException( 'Equivalent Character Not Found' );
 		}
 
 		return $data[$key];

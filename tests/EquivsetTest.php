@@ -18,8 +18,10 @@
 
 namespace Wikimedia\Equivset;
 
+use LogicException;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use Traversable;
 use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**
@@ -92,7 +94,7 @@ class EquivsetTest extends TestCase {
 	/**
 	 * Test Load Failure
 	 *
-	 * Ensure that a non-existant file will throw an EquivsetException when data
+	 * Ensure that a non-existent file will throw an EquivsetException when data
 	 * is loaded.
 	 */
 	public function testLoadFailNoFile() {
@@ -174,7 +176,7 @@ class EquivsetTest extends TestCase {
 	 * Tests Traversable.
 	 */
 	public function testTraversable() {
-		$this->assertInstanceOf( \Traversable::class, $this->getEquivset() );
+		$this->assertInstanceOf( Traversable::class, $this->getEquivset() );
 	}
 
 	/**
@@ -183,7 +185,7 @@ class EquivsetTest extends TestCase {
 	public function testGetIterator() {
 		$data = $this->getEquivset()->getIterator();
 		$this->assertEquals( 'O', $data[0] );
-		$this->assertInstanceOf( \Traversable::class, $data );
+		$this->assertInstanceOf( Traversable::class, $data );
 	}
 
 	/**
@@ -211,7 +213,7 @@ class EquivsetTest extends TestCase {
 	 * Test Get Fail.
 	 */
 	public function testGetFail() {
-		$this->expectException( \LogicException::class );
+		$this->expectException( LogicException::class );
 		$this->getEquivset()->get( 'fail' );
 	}
 
