@@ -156,10 +156,10 @@ class GenerateEquivsetTest extends TestCase {
 		$output = $this->getMockBuilder( OutputInterface::class )
 			->getMock();
 		$output->method( 'writeln' )
-			->with( $this->logicalOr(
-				$this->stringContains( 'Error: invalid entry' ),
-				$this->stringContains( 'Finished with errors' )
-			) );
+			->withConsecutive(
+				[ $this->stringContains( 'Error: invalid entry' ) ],
+				[ $this->stringContains( 'Finished with errors' ) ]
+			);
 		$status = $command->execute( $input, $output );
 
 		$this->assertSame( 1, $status );
@@ -210,10 +210,10 @@ class GenerateEquivsetTest extends TestCase {
 		$output = $this->getMockBuilder( OutputInterface::class )
 			->getMock();
 		$output->method( 'writeln' )
-			->with( $this->logicalOr(
-				$this->stringContains( "Error: $side number ($number) does not match" ),
-				$this->stringContains( 'Finished with errors' )
-			) );
+			->withConsecutive(
+				[ $this->stringContains( "Error: $side number ($number) does not match" ) ],
+				[ $this->stringContains( 'Finished with errors' ) ]
+			);
 
 		$status = $command->execute( $input, $output );
 
@@ -263,12 +263,10 @@ class GenerateEquivsetTest extends TestCase {
 		$output = $this->getMockBuilder( OutputInterface::class )
 			->getMock();
 		$output->method( 'writeln' )
-			->with( $this->logicalOr(
-				$this->stringContains( 'Bytes' ),
-				$this->stringContains( bin2hex( $in ) ),
-				$this->stringContains( 'Invalid UTF-8 character' ),
-				$this->stringContains( 'Finished with errors' )
-			) );
+			->withConsecutive(
+				[ $this->stringContains( 'Invalid UTF-8 character' ) ],
+				[ $this->stringContains( 'Finished with errors' ) ]
+			);
 
 		$status = $command->execute( $input, $output );
 

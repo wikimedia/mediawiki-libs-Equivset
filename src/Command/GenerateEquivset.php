@@ -110,8 +110,6 @@ class GenerateEquivset extends Command {
 			if ( Utils::codepointToUtf8( hexdec( $m['hexleft'] ) ) != $m['charleft'] ) {
 				$actual = Utils::utf8ToCodepoint( $m['charleft'] );
 				if ( $actual === false ) {
-					$output->writeln( "Bytes: " . strlen( $m['charleft'] ) );
-					$output->writeln( bin2hex( $line ) );
 					$hexForm = bin2hex( $m['charleft'] );
 					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charleft']}\" ($hexForm) at " .
 						"line $lineNum: $line</error>" );
@@ -127,7 +125,7 @@ class GenerateEquivset extends Command {
 				$actual = Utils::utf8ToCodepoint( $m['charright'] );
 				if ( $actual === false ) {
 					$hexForm = bin2hex( $m['charright'] );
-					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charleft']}\" ($hexForm) at " .
+					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charright']}\" ($hexForm) at " .
 						"line $lineNum: $line</error>" );
 				} else {
 					$output->writeln( "<error>Error: right number ({$m['hexright']}) does not match right " .
