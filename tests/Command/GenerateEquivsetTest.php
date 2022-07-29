@@ -274,4 +274,43 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
 	}
+
+	/**
+	 * Test Execute Failure Duplicate Character
+	 *
+	 * Ensure duplicate chars in the file are detected
+	 */
+	public function testExecuteFailDuplicateChar() {
+		$in = "30 0 => 53 S\n30 0 => 4F O";
+		$out = [
+			0 => 'O',
+		];
+
+		$root = vfsStream::setup();
+		$data = vfsStream::newDirectory( 'data' )
+			->at( $root );
+		$file = vfsStream::newFile( 'equivset.in' )
+			->withContent( $in )
+			->at( $data );
+		$dist = vfsStream::newDirectory( 'dist' )
+			->at( $root );
+
+		$command = new GenerateEquivset( $data->url(), $dist->url() );
+
+		$input = $this->getMockBuilder( InputInterface::class )
+			->getMock();
+		$output = $this->getMockBuilder( OutputInterface::class )
+			->getMock();
+		$output->method( 'writeln' )
+			->withConsecutive(
+				[ $this->stringContains( 'Duplicate character' ) ],
+				[ $this->stringContains( 'Finished with errors' ) ]
+			);
+
+		$status = $command->execute( $input, $output );
+
+		$this->assertSame( 1, $status );
+
+		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
+	}
 }

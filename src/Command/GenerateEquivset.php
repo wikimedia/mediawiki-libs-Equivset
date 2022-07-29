@@ -135,6 +135,11 @@ class GenerateEquivset extends Command {
 				}
 				$error = true;
 			}
+			if ( isset( $setsByChar[$m['charleft']] ) ) {
+				$output->writeln( "<error>Error: Duplicate character ({$m['charleft']}) " .
+					"at line $lineNum: $line</error>" );
+				$error = true;
+			}
 			if ( $error ) {
 				$exitStatus = 1;
 				continue;
@@ -183,7 +188,7 @@ class GenerateEquivset extends Command {
 		touch( $this->distDir . '/equivset.txt' );
 		$textFile = fopen( $this->distDir . '/equivset.txt', 'w' );
 		foreach ( $sets as $members ) {
-			fwrite( $textFile, implode( ' ', $members ) . PHP_EOL );
+			fwrite( $textFile, implode( ' ', $members ) . "\n" );
 		}
 		fclose( $textFile );
 
