@@ -44,19 +44,20 @@
 	"scripts": {
 		"test": [
 			"parallel-lint . --exclude vendor",
-			"php -d 'zend_extension=xdebug.so' -d 'xdebug.mode=coverage' vendor/bin/phpunit",
+			"@phpunit",
 			"covers-validator",
 			"coverage-check ./coverage/clover.xml 100",
 			"@phpcs",
 			"phan --allow-polyfill-parser --long-progress-bar",
 			"minus-x check ."
 		],
-		"cover": "phpunit --coverage-html coverage",
+		"phpunit": "php -d 'extension=pcov.so' vendor/bin/phpunit",
+		"cover": "php -d 'extension=pcov.so' vendor/bin/phpunit --coverage-html coverage",
 		"fix": [
 			"minus-x fix .",
 			"phpcbf"
 		],
-		"phan": "phan --allow-polyfill-parser --long-progress-bar",
+		"phan": "phan -d . --long-progress-bar",
 		"phpcs": "phpcs -sp"
 	}
 }
