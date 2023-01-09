@@ -25,6 +25,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generate Equivset Command.
+ *
+ * @covers \Wikimedia\Equivset\Command\GenerateEquivset
  */
 class GenerateEquivsetTest extends TestCase {
 

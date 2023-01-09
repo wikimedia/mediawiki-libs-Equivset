@@ -25,7 +25,7 @@ use Traversable;
 use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**
- * Equiveset
+ * @covers \Wikimedia\Equivset\Equivset
  */
 class EquivsetTest extends TestCase {
 
@@ -141,6 +141,8 @@ class EquivsetTest extends TestCase {
 
 	/**
 	 * Gets the Equivset.
+	 *
+	 * @return Equivset
 	 */
 	protected function getEquivset() {
 		if ( !$this->equivset ) {
