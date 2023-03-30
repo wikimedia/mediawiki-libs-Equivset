@@ -32,12 +32,12 @@ class GenerateEquivset extends Command {
 	/**
 	 * @var string
 	 */
-	protected $dataDir;
+	protected string $dataDir;
 
 	/**
 	 * @var string
 	 */
-	protected $distDir;
+	protected string $distDir;
 
 	/**
 	 * Generate Equivset
@@ -68,7 +68,7 @@ class GenerateEquivset extends Command {
 	 * @return int Return status.
 	 */
 	public function execute( InputInterface $input, OutputInterface $output ) {
-		$lines = file( $this->dataDir . '/equivset.in' );
+		$lines = file( $this->dataDir . '/equivset.in', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
 		if ( !$lines ) {
 			throw new Exception( "Unable to open equivset.in" );
 		}
@@ -77,7 +77,6 @@ class GenerateEquivset extends Command {
 		# So we need to make our own whitespace class
 		$sp = '[\ \t]';
 
-		$lineNum = 0;
 		$setsByChar = [];
 		$sets = [];
 		$exitStatus = 0;
@@ -85,7 +84,7 @@ class GenerateEquivset extends Command {
 		foreach ( $lines as $index => $line ) {
 			$lineNum = $index + 1;
 			# Whether the line ends with a nul character
-			$mapToEmpty = ( strpos( $line, "\0" ) === strlen( $line ) - 2 );
+			$mapToEmpty = substr( $line, -1 ) === "\0";
 
 			$line = trim( $line );
 
@@ -147,13 +146,8 @@ class GenerateEquivset extends Command {
 			}
 
 			# Find the set for the right character, add a new one if necessary
-			if ( isset( $setsByChar[$m['charright']] ) ) {
-				$setName = $setsByChar[$m['charright']];
-				$setsByChar[$m['charleft']] = $setsByChar[$m['charright']];
-			} else {
-				$setName = $m['charright'];
-				$setsByChar[$m['charleft']] = $m['charright'];
-			}
+			$setName = $setsByChar[$m['charright']] ?? $m['charright'];
+			$setsByChar[$m['charleft']] = $setName;
 
 			if ( !isset( $sets[$setName] ) ) {
 				$sets[$setName] = [ $setName ];
