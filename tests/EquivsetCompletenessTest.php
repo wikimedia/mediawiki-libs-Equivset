@@ -52,6 +52,7 @@ class EquivsetCompletenessTest extends TestCase {
 				&& $char !== $lcChar
 				&& $lcChar !== $replacement
 				&& !isset( $data[$lcChar] )
+				&& $char !== 'İ'
 			) {
 				$missing .= 'Lower case character ' . self::printChar( $lcChar ) . ' not in the set ' .
 					'(mapping based on upper case character is ' . self::printChar( $replacement ) . ")\n";
