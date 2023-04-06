@@ -80,6 +80,7 @@ class GenerateEquivset extends Command {
 		$setsByChar = [];
 		$sets = [];
 		$exitStatus = 0;
+		$lastChar = null;
 
 		foreach ( $lines as $index => $line ) {
 			$lineNum = $index + 1;
@@ -136,6 +137,13 @@ class GenerateEquivset extends Command {
 				$output->writeln( "<error>Error: Duplicate character ({$m['charleft']}) " .
 					"at line $lineNum: $line</error>" );
 				$error = true;
+			}
+			if ( $lastChar !== null && $m['charleft'] < $lastChar ) {
+				$output->writeln( "<error>Error: Characters not in order based on hex-value ({$m['charleft']}) " .
+					"at line $lineNum: $line</error>" );
+				$error = true;
+			} else {
+				$lastChar = $m['charleft'];
 			}
 			if ( $error ) {
 				$exitStatus = 1;
