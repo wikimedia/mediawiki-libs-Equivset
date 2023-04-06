@@ -186,6 +186,14 @@ class GenerateEquivset extends Command {
 		file_put_contents( $this->distDir . '/equivset.ser', serialize( $setsByChar ) );
 
 		// Text File.
+		uksort( $sets, static function ( string $a, string $b ) {
+			if ( $a === '' ) {
+				return -1;
+			} elseif ( $b === '' ) {
+				return 1;
+			}
+			return mb_ord( $a ) - mb_ord( $b );
+		} );
 		touch( $this->distDir . '/equivset.txt' );
 		$textFile = fopen( $this->distDir . '/equivset.txt', 'w' );
 		foreach ( $sets as $members ) {
