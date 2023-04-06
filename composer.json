@@ -51,6 +51,7 @@
 			"phan --allow-polyfill-parser --long-progress-bar",
 			"minus-x check ."
 		],
+		"generate": "php bin/console --ansi generate-equivset",
 		"phpunit": "php -d 'extension=pcov.so' vendor/bin/phpunit",
 		"cover": "php -d 'extension=pcov.so' vendor/bin/phpunit --coverage-html coverage",
 		"fix": [

@@ -57,6 +57,7 @@ class GenerateEquivset extends Command {
 	 */
 	protected function configure() {
 		$this->setName( 'generate-equivset' );
+		$this->setDescription( 'Generate the JSON, serialized, and plain text versions of the equivset in `./dist`' );
 	}
 
 	/**
