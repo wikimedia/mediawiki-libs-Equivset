@@ -156,13 +156,22 @@ class GenerateEquivset extends Command {
 
 			# Find the set for the right character, add a new one if necessary
 			$setName = $setsByChar[$m['charright']] ?? $m['charright'];
-			$setsByChar[$m['charleft']] = $setName;
 
 			if ( !isset( $sets[$setName] ) ) {
 				$sets[$setName] = [ $setName ];
 			}
 
-			$sets[$setName][] = $m['charleft'];
+			// When a mapping between two chars exists before one of them gets the final set, a merge is needed
+			if ( isset( $sets[$m['charleft']] ) ) {
+				foreach ( $sets[$m['charleft']] as $char ) {
+					$setsByChar[$char] = $setName;
+					$sets[$setName][] = $char;
+				}
+				unset( $sets[$m['charleft']] );
+			} else {
+				$setsByChar[$m['charleft']] = $setName;
+				$sets[$setName][] = $m['charleft'];
+			}
 		}
 
 		$jsonData = [
