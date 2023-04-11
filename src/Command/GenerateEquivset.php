@@ -195,18 +195,13 @@ class GenerateEquivset extends Command {
 		file_put_contents( $this->distDir . '/equivset.ser', serialize( $setsByChar ) );
 
 		// Text File.
-		uksort( $sets, static function ( string $a, string $b ) {
-			if ( $a === '' ) {
-				return -1;
-			} elseif ( $b === '' ) {
-				return 1;
-			}
-			return mb_ord( $a ) - mb_ord( $b );
-		} );
+		uksort( $sets, [ self::class, 'compareCodePoints' ] );
 		touch( $this->distDir . '/equivset.txt' );
 		$textFile = fopen( $this->distDir . '/equivset.txt', 'w' );
 		foreach ( $sets as $members ) {
-			fwrite( $textFile, implode( ' ', $members ) . "\n" );
+			$setName = array_shift( $members );
+			usort( $members, [ self::class, 'compareCodePoints' ] );
+			fwrite( $textFile, $setName . ' ' . implode( ' ', $members ) . "\n" );
 		}
 		fclose( $textFile );
 
@@ -218,4 +213,19 @@ class GenerateEquivset extends Command {
 
 		return $exitStatus;
 	}
+
+	/**
+	 * @param string $a
+	 * @param string $b
+	 * @return int
+	 */
+	private static function compareCodePoints( string $a, string $b ) {
+		if ( $a === '' ) {
+			return -1;
+		} elseif ( $b === '' ) {
+			return 1;
+		}
+		return mb_ord( $a ) - mb_ord( $b );
+	}
+
 }
