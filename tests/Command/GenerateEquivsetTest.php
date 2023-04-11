@@ -40,6 +40,36 @@ class GenerateEquivsetTest extends TestCase {
 	}
 
 	/**
+	 * Test regenerated files
+	 */
+	public function testRegeneratedDist() {
+		// Define a temp storage for the regenerated files
+		$root = vfsStream::setup();
+		$dist = vfsStream::newDirectory( 'dist' )
+			->at( $root );
+
+		// Run generate command
+		$command = new GenerateEquivset( '', $dist->url() );
+		$input = $this->getMockBuilder( InputInterface::class )->getMock();
+		$output = $this->getMockBuilder( OutputInterface::class )->getMock();
+		$status = $command->execute( $input, $output );
+
+		// Compare the regenerated result against the current files
+		$this->assertSame( 0, $status );
+		foreach ( [
+			'equivset.json',
+			'equivset.txt',
+			'equivset.ser',
+		] as $filename ) {
+			$this->assertSame(
+				file_get_contents( __DIR__ . '/../../dist/' . $filename ),
+				$dist->getChild( $filename )->getContent(),
+				$filename . ' does not match equivset.in, run "composer generate"'
+			);
+		}
+	}
+
+	/**
 	 * Test Mocked Execute.
 	 */
 	public function testExecute() {
