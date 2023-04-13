@@ -69,7 +69,7 @@ class GenerateEquivset extends Command {
 	 * @return int Return status.
 	 */
 	public function execute( InputInterface $input, OutputInterface $output ) {
-		$lines = file( $this->dataDir . '/equivset.in', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
+		$lines = file( $this->dataDir . '/equivset.in', FILE_IGNORE_NEW_LINES );
 		if ( !$lines ) {
 			throw new Exception( "Unable to open equivset.in" );
 		}
