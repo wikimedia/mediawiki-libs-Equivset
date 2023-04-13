@@ -81,10 +81,25 @@ class EquivsetTest extends TestCase {
 	 *
 	 * Ensure that a mock equivset.ser file can be read without a problem.
 	 */
-	public function testLoad() {
+	public function testLoadSer() {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.ser' )
 			->withContent( serialize( $this->data ) )
+			->at( $root );
+		$equivset = new Equivset( [], $file->url() );
+
+		$this->assertEquals( $this->data, $equivset->all() );
+	}
+
+	/**
+	 * Test Load
+	 *
+	 * Ensure that a mock equivset.php file can be read without a problem.
+	 */
+	public function testLoadPhp() {
+		$root = vfsStream::setup();
+		$file = vfsStream::newFile( 'equivset.php' )
+			->withContent( '<?php return ' . var_export( $this->data, true ) . ';' )
 			->at( $root );
 		$equivset = new Equivset( [], $file->url() );
 

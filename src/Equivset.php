@@ -144,12 +144,16 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 			throw new EquivsetException( 'Serialized equivset is unreadable' );
 		}
 
-		// file_get_contents() will not fail at this point since none of the
-		// conditions that can cause a failure can happen at this point.
-		// @see http://php.net/manual/en/function.file-get-contents.php
-		$contents = file_get_contents( $this->serializedPath );
+		if ( pathinfo( $this->serializedPath, PATHINFO_EXTENSION ) === 'php' ) {
+			$data = require $this->serializedPath;
+		} else {
+			// file_get_contents() will not fail at this point since none of the
+			// conditions that can cause a failure can happen at this point.
+			// @see http://php.net/manual/en/function.file-get-contents.php
+			$contents = file_get_contents( $this->serializedPath );
 
-		$data = unserialize( $contents );
+			$data = unserialize( $contents );
+		}
 
 		if ( $data === false ) {
 			throw new EquivsetException( 'Unserializing serialized equivset failed' );

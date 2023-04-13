@@ -58,6 +58,7 @@ class GenerateEquivsetTest extends TestCase {
 		$this->assertSame( 0, $status );
 		foreach ( [
 			'equivset.json',
+			'equivset.php',
 			'equivset.txt',
 			'equivset.ser',
 		] as $filename ) {
