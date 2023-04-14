@@ -115,6 +115,7 @@ class GenerateEquivset extends Command {
 					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charleft']}\" ($hexForm) at " .
 						"line $lineNum: $line</error>" );
 				} else {
+					$actual = strtoupper( dechex( $actual ) );
 					$output->writeln( "<error>Error: left number ({$m['hexleft']}) does not match left " .
 						"character ($actual) at line $lineNum: $line</error>" );
 				}
@@ -129,6 +130,7 @@ class GenerateEquivset extends Command {
 					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charright']}\" ($hexForm) at " .
 						"line $lineNum: $line</error>" );
 				} else {
+					$actual = strtoupper( dechex( $actual ) );
 					$output->writeln( "<error>Error: right number ({$m['hexright']}) does not match right " .
 						"character ($actual) at line $lineNum: $line</error>" );
 				}
