@@ -109,7 +109,7 @@ class GenerateEquivset extends Command {
 			$error = false;
 
 			if ( Utils::codepointToUtf8( hexdec( $m['hexleft'] ) ) != $m['charleft'] ) {
-				$actual = Utils::utf8ToCodepoint( $m['charleft'] );
+				$actual = mb_strlen( $m['charleft'] ) > 1 ? false : mb_ord( $m['charleft'] );
 				if ( $actual === false ) {
 					$hexForm = bin2hex( $m['charleft'] );
 					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charleft']}\" ($hexForm) at " .
@@ -124,7 +124,7 @@ class GenerateEquivset extends Command {
 			if ( !empty( $m['hexright'] )
 				&& Utils::codepointToUtf8( hexdec( $m['hexright'] ) ) != $m['charright']
 			) {
-				$actual = Utils::utf8ToCodepoint( $m['charright'] );
+				$actual = mb_strlen( $m['charright'] ) > 1 ? false : mb_ord( $m['charright'] );
 				if ( $actual === false ) {
 					$hexForm = bin2hex( $m['charright'] );
 					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charright']}\" ($hexForm) at " .
