@@ -29,6 +29,9 @@
 # equivalent, because the latin transliteration of the cyrillic "Н" (which
 # looks like latin H) is "E".
 
+# C0 Controls and Basic Latin
+# Range: 0000–007F
+# https://www.unicode.org/charts/PDF/U0000.pdf
 24 $ => 53 S
 30 0 => 4F O
 31 1 => 49 I
@@ -64,6 +67,10 @@
 79 y => 59 Y
 7A z => 5A Z
 7C | => 31 1
+
+# C1 Controls and Latin-1 Supplement
+# Range: 0080–00FF
+# https://www.unicode.org/charts/PDF/U0080.pdf
 A1 ¡ => 69 i
 A2 ¢ => 63 c
 A3 £ => 4C L
@@ -141,6 +148,10 @@ FC ü => 75 u
 FD ý => 79 y
 FE þ => 70 p
 FF ÿ => 79 y
+
+# Latin Extended-A
+# Range: 0100–017F
+# https://www.unicode.org/charts/PDF/U0100.pdf
 100 Ā => 41 A
 101 ā => 61 a
 102 Ă => 41 A
@@ -266,6 +277,10 @@ FF ÿ => 79 y
 17C ż => 7A z
 17D Ž => 5A Z
 17E ž => 7A z
+
+# Latin Extended-B
+# Range: 0180–024F
+# https://www.unicode.org/charts/PDF/U0180.pdf
 180 ƀ => 62 b
 181 Ɓ => 42 B
 182 Ƃ => 62 b
@@ -457,6 +472,10 @@ FF ÿ => 79 y
 24D ɍ => 72 r
 24E Ɏ => 59 Y
 24F ɏ => 79 y
+
+# IPA Extensions
+# Range: 0250–02AF
+# https://www.unicode.org/charts/PDF/U0250.pdf
 250 ɐ => 61 a
 251 ɑ => 61 a
 252 ɒ => 251 ɑ
@@ -515,6 +534,10 @@ FF ÿ => 79 y
 29E ʞ => 6B k
 29F ʟ => 4C L
 2A0 ʠ => 71 q
+
+# Spacing Modifier Letters
+# Range: 02B0–02FF
+# https://www.unicode.org/charts/PDF/U02B0.pdf
 2B0 ʰ => 68 h
 2B1 ʱ => 266 ɦ
 2B2 ʲ => 6A j
@@ -528,6 +551,10 @@ FF ÿ => 79 y
 2E1 ˡ => 6C l
 2E2 ˢ => 73 s
 2E3 ˣ => 78 x
+
+# Greek and Coptic
+# Range: 0370–03FF
+# https://www.unicode.org/charts/PDF/U0370.pdf
 372 Ͳ => 54 T
 373 ͳ => 372 Ͳ
 376 Ͷ => 4E N
@@ -621,6 +648,10 @@ FF ÿ => 79 y
 3FD Ͻ => 37B ͻ
 3FE Ͼ => 3F9 Ϲ
 3FF Ͽ => 3FD Ͻ
+
+# Cyrillic
+# Range: 0400–04FF
+# https://www.unicode.org/charts/PDF/U0400.pdf
 400 Ѐ => 45 E
 401 Ё => 45 E
 402 Ђ => 40B Ћ
@@ -811,6 +842,10 @@ FF ÿ => 79 y
 4FD ӽ => 4FC Ӽ
 4FE Ӿ => 58 X
 4FF ӿ => 4FE Ӿ
+
+# Cyrillic Supplement
+# Range: 0500–052F
+# https://www.unicode.org/charts/PDF/U0500.pdf
 500 Ԁ => 64 d
 501 ԁ => 64 d
 50A Ԋ => 48 H
@@ -825,6 +860,10 @@ FF ÿ => 79 y
 51F ԟ => 51E Ԟ
 528 Ԩ => 48 H
 529 ԩ => 528 Ԩ
+
+# Armenian
+# Range: 0530–058F
+# https://www.unicode.org/charts/PDF/U0530.pdf
 531 Ա => 55 U
 532 Բ => 562 բ
 533 Գ => 71 q
@@ -880,6 +919,10 @@ FF ÿ => 79 y
 585 օ => 6F o
 587 և => 55 U
 589 ։ => 3A :
+
+# Hebrew
+# Range: 0590–05FF
+# https://www.unicode.org/charts/PDF/U0590.pdf
 59C ֜ => 301 ́
 5AF ֯ => 30A ̊
 5B9 ֹ => 307 ̇
@@ -889,6 +932,10 @@ FF ÿ => 79 y
 5C4 ׄ => 307 ̇
 5F3 ׳ => 27 '
 5F4 ״ => 22 "
+
+# Arabic
+# Range: 0600–06FF
+# https://www.unicode.org/charts/PDF/U0600.pdf
 61F ؟ => 2E2E ⸮
 639 ع => 45 E
 64A ي => 649 ى
@@ -915,11 +962,23 @@ FF ÿ => 79 y
 6F7 ۷ => 667 ٧
 6F8 ۸ => 668 ٨
 6F9 ۹ => 669 ٩
+
+# Syriac
+# Range: 0700–074F
+# https://www.unicode.org/charts/PDF/U0700.pdf
 702 ܂ => 2E .
 741 ݁ => 307 ̇
 742 ݂ => 73C ܼ
 747 ݇ => 301 ́
+
+# Arabic Supplement
+# Range: 0750–077F
+# https://www.unicode.org/charts/PDF/U0750.pdf
 778 ݸ => 648 و
+
+# Devanagari
+# Range: 0900–097F
+# https://www.unicode.org/charts/PDF/U0900.pdf
 902 ं => 307 ̇
 93C ़ => 323 ̣
 952 ॒ => 320 ̠
@@ -927,10 +986,18 @@ FF ÿ => 79 y
 954 ॔ => 301 ́
 966 ० => 30 0
 96F ९ => 39 9
+
+# Bengali
+# Range: 0980–09FF
+# https://www.unicode.org/charts/PDF/U0980.pdf
 9BC ় => 323 ̣
 9E6 ০ => 30 0
 9EA ৪ => 38 8
 9ED ৭ => 39 9
+
+# Gurmukhi
+# Range: 0A00–0A7F
+# https://www.unicode.org/charts/PDF/U0A00.pdf
 A02 ਂ => 307 ̇
 A03 ਃ => 983 ঃ
 A3C ਼ => 323 ̣
@@ -939,6 +1006,10 @@ A4D ੍ => 94D ्
 A66 ੦ => 30 0
 A67 ੧ => 39 9
 A6A ੪ => 222 Ȣ
+
+# Gujarati
+# Range: 0A80–0AFF
+# https://www.unicode.org/charts/PDF/U0A80.pdf
 A82 ં => 307 ̇
 ABC ઼ => 323 ̣
 ABD ઽ => 93D ऽ
@@ -950,10 +1021,18 @@ AE8 ૨ => 968 २
 AE9 ૩ => 969 ३
 AEA ૪ => 96A ४
 AEE ૮ => 96E ८
+
+# Oriya
+# Range: 0B00–0B7F
+# https://www.unicode.org/charts/PDF/U0B00.pdf
 B03 ଃ => 38 8
 B3C ଼ => 323 ̣
 B66 ୦ => 30 0
 B68 ୨ => 39 9
+
+# Tamil
+# Range: 0B80–0BFF
+# https://www.unicode.org/charts/PDF/U0B80.pdf
 B82 ஂ => 30A ̊
 B9C ஜ => B90 ஐ
 BB0 ர => B88 ஈ
@@ -970,12 +1049,20 @@ BEE ௮ => B85 அ
 BF0 ௰ => BAF ய
 BF5 ௵ => BF3 ௳
 BF8 ௸ => BB7 ஷ
+
+# Telugu
+# Range: 0C00–0C7F
+# https://www.unicode.org/charts/PDF/U0C00.pdf
 C02 ం => 30 0
 C03 ః => 983 ঃ
 C22 ఢ => C21 డ
 C2D భ => C2C బ
 C37 ష => C35 వ
 C66 ౦ => 30 0
+
+# Kannada
+# Range: 0C80–0CFF
+# https://www.unicode.org/charts/PDF/U0C80.pdf
 C82 ಂ => 30 0
 C83 ಃ => 983 ঃ
 C85 ಅ => C05 అ
@@ -994,6 +1081,10 @@ CE6 ೦ => 30 0
 CE7 ೧ => C67 ౧
 CE8 ೨ => C68 ౨
 CEF ೯ => C6F ౯
+
+# Malayalam
+# Range: 0D00–0D7F
+# https://www.unicode.org/charts/PDF/U0D00.pdf
 D02 ം => 30 0
 D09 ഉ => B89 உ
 D1C ജ => B90 ஐ
@@ -1008,6 +1099,10 @@ D41 ു => BC2 ூ
 D42 ൂ => BC2 ூ
 D43 ൃ => BC2 ூ
 D61 ൡ => D1E ഞ
+
+# Thai
+# Range: 0E00–0E7F
+# https://www.unicode.org/charts/PDF/U0E00.pdf
 E03 ฃ => E02 ข
 E0B ซ => E0A ช
 E0F ฏ => E0E ฎ
@@ -1019,6 +1114,10 @@ E3F ฿ => 42 B
 E45 ๅ => E32 า
 E4D ํ => 30A ̊
 E50 ๐ => 30 0
+
+# Lao
+# Range: 0E80–0EFF
+# https://www.unicode.org/charts/PDF/U0E80.pdf
 E88 ຈ => E08 จ
 E8D ຍ => E22 ย
 E9A ບ => E1A บ
@@ -1034,12 +1133,28 @@ ECA ໊ => E4A ๊
 ECB ໋ => E4B ๋
 ECD ໍ => 30A ̊
 ED0 ໐ => 30 0
+
+# Tibetan
+# Range: 0F00–0FFF
+# https://www.unicode.org/charts/PDF/U0F00.pdf
 F0C ༌ => F0B ་
+
+# Myanmar
+# Range: 1000–109F
+# https://www.unicode.org/charts/PDF/U1000.pdf
 101D ဝ => 30 0
 1036 ံ => 30A ̊
 1040 ၀ => 30 0
+
+# Georgian
+# Range: 10A0–10FF
+# https://www.unicode.org/charts/PDF/U10A0.pdf
 10E7 ყ => 79 y
 10F3 ჳ => 33 3
+
+# Cherokee
+# Range: 13A0–13FF
+# https://www.unicode.org/charts/PDF/U13A0.pdf
 13A1 Ꭱ => 52 R
 13A5 Ꭵ => 69 i
 13A9 Ꭹ => 79 y
@@ -1073,6 +1188,10 @@ F0C ༌ => F0B ་
 13FA ᏺ => 68 h
 13FB ᏻ => 47 G
 13FC ᏼ => 42 B
+
+# Unified Canadian Aboriginal Syllabics
+# Range: 1400–167F
+# https://www.unicode.org/charts/PDF/U1400.pdf
 1403 ᐃ => 394 Δ
 1427 ᐧ => B7 ·
 142F ᐯ => 56 V
@@ -1106,7 +1225,15 @@ F0C ༌ => F0B ་
 1635 ᘵ => 162F ᘯ
 166D ᙭ => 58 X
 166E ᙮ => 58 X
+
+# Runic
+# Range: 16A0–16FF
+# https://www.unicode.org/charts/PDF/U16A0.pdf
 16D7 ᛗ => 4D M
+
+# Khmer
+# Range: 1780–17FF
+# https://www.unicode.org/charts/PDF/U1780.pdf
 17A3 ឣ => 17A2 អ
 17B7 ិ => E34 ิ
 17B8 ី => E35 ี
@@ -1119,11 +1246,27 @@ F0C ༌ => F0B ་
 17D5 ៕ => E5A ๚
 17D9 ៙ => E4F ๏
 17DA ៚ => E5B ๛
+
+# Mongolian
+# Range: 1800–18AF
+# https://www.unicode.org/charts/PDF/U1800.pdf
 1810 ᠐ => 30 0
 1896 ᢖ => 185C ᡜ
+
+# Tai Le
+# Range: 1950–197F
+# https://www.unicode.org/charts/PDF/U1950.pdf
 1959 ᥙ => 55 U
+
+# Georgian Extended
+# Range: 1C90–1CBF
+# https://www.unicode.org/charts/PDF/U1C90.pdf
 1CA7 Ყ => 79 y
 1CB3 Ჳ => 33 3
+
+# Phonetic Extensions
+# Range: 1D00–1D7F
+# https://www.unicode.org/charts/PDF/U1D00.pdf
 1D00 ᴀ => 41 A
 1D01 ᴁ => C6 Æ
 1D02 ᴂ => E6 æ
@@ -1247,6 +1390,10 @@ F0C ༌ => F0B ་
 1D7D ᵽ => 70 p
 1D7E ᵾ => 244 Ʉ
 1D7F ᵿ => 28B ʋ
+
+# Phonetic Extensions Supplement
+# Range: 1D80–1DBF
+# https://www.unicode.org/charts/PDF/U1D80.pdf
 1D80 ᶀ => 62 b
 1D81 ᶁ => 64 d
 1D82 ᶂ => 66 f
@@ -1311,6 +1458,10 @@ F0C ༌ => F0B ་
 1DBD ᶽ => 1DBB ᶻ
 1DBE ᶾ => 292 ʒ
 1DBF ᶿ => 3B8 θ
+
+# Latin Extended Additional
+# Range: 1E00–1EFF
+# https://www.unicode.org/charts/PDF/U1E00.pdf
 1E00 Ḁ => 41 A
 1E01 ḁ => 61 a
 1E0C Ḍ => 44 D
@@ -1427,6 +1578,10 @@ F0C ༌ => F0B ་
 1EF7 ỷ => 1EF3 ỳ
 1EF8 Ỹ => 59 Y
 1EF9 ỹ => 79 y
+
+# Greek Extended
+# Range: 1F00–1FFF
+# https://www.unicode.org/charts/PDF/U1F00.pdf
 1F00 ἀ => 3B1 α
 1F01 ἁ => 3B1 α
 1F02 ἂ => 1F00 ἀ
@@ -1644,6 +1799,10 @@ F0C ༌ => F0B ་
 1FFA Ὼ => 1F69 Ὡ
 1FFB Ώ => 1F68 Ὠ
 1FFC ῼ => 3A9 Ω
+
+# General Punctuation
+# Range: 2000–206F
+# https://www.unicode.org/charts/PDF/U2000.pdf
 200A   => 0 NUL
 200B ​ => 0 NUL
 200C ‌ => 0 NUL
@@ -1662,6 +1821,10 @@ F0C ༌ => F0B ་
 2067 ⁧ => NUL
 2068 ⁨ => NUL
 2069 ⁩ => NUL
+
+# Superscripts and Subscripts
+# Range: 2070–209F
+# https://www.unicode.org/charts/PDF/U2070.pdf
 2070 ⁰ => 30 0
 2071 ⁱ => 69 i
 2074 ⁴ => 34 4
@@ -1694,6 +1857,10 @@ F0C ༌ => F0B ་
 209A ₚ => 70 p
 209B ₛ => 73 s
 209C ₜ => 74 t
+
+# Currency Symbols
+# Range: 20A0–20CF
+# https://www.unicode.org/charts/PDF/U20A0.pdf
 20A1 ₡ => 23B Ȼ
 20A3 ₣ => 46 F
 20A4 ₤ => A3 £
@@ -1713,6 +1880,10 @@ F0C ༌ => F0B ་
 20B8 ₸ => 54 T
 20BD ₽ => 50 P
 20BF ₿ => 42 B
+
+# Letterlike Symbols
+# Range: 2100–214F
+# https://www.unicode.org/charts/PDF/U2100.pdf
 2102 ℂ => 43 C
 2107 ℇ => 45 E
 210A ℊ => 67 g
@@ -1766,6 +1937,10 @@ F0C ༌ => F0B ་
 2148 ⅈ => 69 i
 2149 ⅉ => 6A j
 214E ⅎ => 46 F
+
+# Number Forms
+# Range: 2150–218F
+# https://www.unicode.org/charts/PDF/U2150.pdf
 216C Ⅼ => 4C L
 216D Ⅽ => 43 C
 216E Ⅾ => 44 D
@@ -1774,6 +1949,10 @@ F0C ༌ => F0B ་
 217D ⅽ => 63 c
 217E ⅾ => 64 d
 217F ⅿ => 4D M
+
+# Mathematical Operators
+# Range: 2200–22FF
+# https://www.unicode.org/charts/PDF/U2200.pdf
 2200 ∀ => 41 A
 2201 ∁ => 43 C
 2202 ∂ => 1DD ǝ
@@ -1782,6 +1961,10 @@ F0C ༌ => F0B ་
 2207 ∇ => 394 Δ
 2211 ∑ => 3A3 Σ
 2218 ∘ => BA º
+
+# Enclosed Alphanumerics
+# Range: 2460–24FF
+# https://www.unicode.org/charts/PDF/U2460.pdf
 2460 ① => 31 1
 2461 ② => 32 2
 2462 ③ => 33 3
@@ -1931,6 +2114,10 @@ F0C ༌ => F0B ་
 24FD ⓽ => 2468 ⑨
 24FE ⓾ => 2469 ⑩
 24FF ⓿ => 24EA ⓪
+
+# Dingbats
+# Range: 2700–27BF
+# https://www.unicode.org/charts/PDF/U2700.pdf
 2753 ❓ => 3F ?
 2754 ❔ => 2753 ❓
 2776 ❶ => 2460 ①
@@ -1963,6 +2150,10 @@ F0C ༌ => F0B ་
 2791 ➑ => 277D ❽
 2792 ➒ => 277E ❾
 2793 ➓ => 277F ❿
+
+# Latin Extended-C
+# Range: 2C60–2C7F
+# https://www.unicode.org/charts/PDF/U2C60.pdf
 2C60 Ⱡ => 4C L
 2C61 ⱡ => 6C l
 2C62 Ɫ => 2C60 Ⱡ
@@ -1993,15 +2184,39 @@ F0C ༌ => F0B ་
 2C7D ⱽ => 56 V
 2C7E Ȿ => 53 S
 2C7F Ɀ => 240 ɀ
+
+# Coptic
+# Range: 2C80–2CFF
+# https://www.unicode.org/charts/PDF/U2C80.pdf
 2C98 Ⲙ => 4D M
 2C99 ⲙ => 2C98 Ⲙ
+
+# Tifinagh
+# Range: 2D30–2D7F
+# https://www.unicode.org/charts/PDF/U2D30.pdf
 2D31 ⴱ => 3B8 θ
 2D39 ⴹ => 45 E
 2D54 ⵔ => 4F O
+
+# Supplemental Punctuation
+# Range: 2E00–2E7F
+# https://www.unicode.org/charts/PDF/U2E00.pdf
 2E18 ⸘ => BF ¿
 2E2E ⸮ => 3F ?
+
+# CJK Symbols and Punctuation
+# Range: 3000–303F
+# https://www.unicode.org/charts/PDF/U3000.pdf
 3007 〇 => 0030 0
+
+# Katakana
+# Range: 30A0–30FF
+# https://www.unicode.org/charts/PDF/U30A0.pdf
 30D8 ヘ => 3078 へ
+
+# CJK Unified Ideographs Extension A
+# Range: 3400–4DBF
+# https://www.unicode.org/charts/PDF/U3400.pdf
 3473 㑳 => 3447 㑇
 361A 㘚 => 360E 㘎
 396E 㥮 => 3918 㤘
@@ -2015,6 +2230,10 @@ F0C ༌ => F0B ་
 49B6 䦶 => 499B 䦛
 49B7 䦷 => 499F 䦟
 4CA3 䲣 => 4C77 䱷
+
+# CJK Unified Ideographs (Han)
+# Range: 4E00-9FFF
+# https://www.unicode.org/charts/PDF/U4E00.pdf (35MB)
 4E0A 上 => 4E04 丄
 4E0B 下 => 4E05 丅
 4E10 丐 => 4E0F 丏
@@ -6431,6 +6650,10 @@ F0C ༌ => F0B ་
 9F9E 龞 => 9C49 鱉
 9F9F 龟 => 4E80 亀
 9FA2 龢 => 548C 和
+
+# Yi Radicals
+# Range: A490–A4CF
+# https://www.unicode.org/charts/PDF/UA490.pdf
 A49C ꒜ => A0C0 ꃀ
 A49E ꒞ => A04A ꁊ
 A4AC ꒬ => A050 ꁐ
@@ -6440,8 +6663,16 @@ A4BE ꒾ => A2B1 ꊱ
 A4BF ꒿ => A259 ꉙ
 A4C0 ꓀ => A3AB ꎫ
 A4C2 ꓂ => A3B5 ꎵ
+
+# Cyrillic Extended-B
+# Range: A640–A69F
+# https://www.unicode.org/charts/PDF/UA640.pdf
 A64C Ꙍ => 460 Ѡ
 A64D ꙍ => 461 ѡ
+
+# Latin Extended-D
+# Range: A720–A7FF
+# https://www.unicode.org/charts/PDF/UA720.pdf
 A730 ꜰ => 46 F
 A731 ꜱ => 73 s
 A77D Ᵹ => 1D79 ᵹ
@@ -6454,7 +6685,15 @@ A7B0 Ʞ => 29E ʞ
 A7B1 Ʇ => 54 T
 A7C5 Ʂ => 53 S
 A7C6 Ᶎ => 224 Ȥ
+
+# Latin Extended-E
+# Range: AB30–AB6F
+# https://www.unicode.org/charts/PDF/UAB30.pdf
 AB46 ꭆ => 52 R
+
+# Cherokee Supplement
+# Range: AB70–ABBF
+# https://www.unicode.org/charts/PDF/UAB70.pdf
 AB71 ꭱ => 52 R
 AB75 ꭵ => 69 i
 AB79 ꭹ => 79 y
@@ -6482,9 +6721,21 @@ ABAF ꮯ => 63 c
 ABB2 ꮲ => 70 p
 ABB6 ꮶ => 4B K
 ABB7 ꮷ => 64 d
+
+# Small Form Variants
+# Range: FE50–FE6F
+# https://www.unicode.org/charts/PDF/UFE50.pdf
 FE56 ﹖ => 3F ?
+
+# Arabic Presentation Forms-B
+# Range: FE70–FEFF
+# https://www.unicode.org/charts/PDF/UFE70.pdf
 FED9 ﻙ => 6A9 ک
 FEDA ﻚ => FED9 ﻙ
+
+# Halfwidth and Fullwidth Forms
+# Range: FF00–FFEF
+# https://www.unicode.org/charts/PDF/UFF00.pdf
 FF10 ０ => 0030 0
 FF11 １ => 0031 1
 FF12 ２ => 0032 2
@@ -6675,7 +6926,15 @@ FFD7 ￗ => 3160 ㅠ
 FFDA ￚ => 3161 ㅡ
 FFDB ￛ => 3162 ㅢ
 FFDC ￜ => 3163 ㅣ
+
+# Gothic
+# Range: 10330–1034F
+# https://www.unicode.org/charts/PDF/U10330.pdf
 1033C 𐌼 => 4D M
+
+# Mathematical Alphanumeric Symbols
+# Range: 1D400–1D7FF
+# https://www.unicode.org/charts/PDF/U1D400.pdf
 1D400 𝐀 => 41 A
 1D401 𝐁 => 42 B
 1D402 𝐂 => 43 C
@@ -7672,6 +7931,10 @@ FFDC ￜ => 3163 ㅣ
 1D7FD 𝟽 => 1D7E9 𝟩
 1D7FE 𝟾 => 1D7EA 𝟪
 1D7FF 𝟿 => 1D7EB 𝟫
+
+# Enclosed Alphanumeric Supplement
+# Range: 1F100–1F1FF
+# https://www.unicode.org/charts/PDF/U1F100.pdf
 1F100 🄀 => 30 0
 1F101 🄁 => 30 0
 1F102 🄂 => 31 1
