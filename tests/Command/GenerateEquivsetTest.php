@@ -281,7 +281,7 @@ class GenerateEquivsetTest extends TestCase {
 		$output = $this->createMock( OutputInterface::class );
 		$output->method( 'writeln' )
 			->withConsecutive(
-				[ $this->stringContains( 'Invalid UTF-8 character' ) ],
+				[ $this->stringContains( 'Error: invalid entry at line 1:' ) ],
 				[ $this->stringContains( 'Finished with errors' ) ]
 			);
 

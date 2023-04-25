@@ -1809,24 +1809,24 @@ F0C ༌ => F0B ་
 # General Punctuation
 # Range: 2000–206F
 # https://www.unicode.org/charts/PDF/U2000.pdf
-200A   => 0 NUL
-200B ​ => 0 NUL
-200C ‌ => 0 NUL
-200D ‍ => 0 NUL
-200E ‎ => 0 NUL
-200F ‏ => 0 NUL
-2028   => NUL
-2029   => NUL
-202A ‪ => NUL
-202B ‫ => NUL
-202D ‭ => NUL
-202E ‮ => NUL
+200A   => invisible
+200B ​ => invisible
+200C ‌ => invisible
+200D ‍ => invisible
+200E ‎ => invisible
+200F ‏ => invisible
+2028   => invisible
+2029   => invisible
+202A ‪ => invisible
+202B ‫ => invisible
+202D ‭ => invisible
+202E ‮ => invisible
 203D ‽ => 3F ?
-2062 ⁢ => NUL
-2066 ⁦ => NUL
-2067 ⁧ => NUL
-2068 ⁨ => NUL
-2069 ⁩ => NUL
+2062 ⁢ => invisible
+2066 ⁦ => invisible
+2067 ⁧ => invisible
+2068 ⁨ => invisible
+2069 ⁩ => invisible
 
 # Superscripts and Subscripts
 # Range: 2070–209F

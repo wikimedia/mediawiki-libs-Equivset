@@ -77,10 +77,6 @@ class GenerateEquivset extends Command {
 			throw new Exception( "Unable to open equivset.in" );
 		}
 
-		# \s matches \xa0 in non-unicode mode, which is not what we want
-		# So we need to make our own whitespace class
-		$sp = '[\ \t]';
-
 		$lineNum = 0;
 		$setsByChar = [];
 		$sets = [];
@@ -90,9 +86,6 @@ class GenerateEquivset extends Command {
 		// phpcs:ignore MediaWiki.ControlStructures.AssignmentInControlStructures
 		while ( ( $line = fgets( $fp ) ) !== false ) {
 			$lineNum++;
-			# Whether the line ends with a nul character
-			$mapToEmpty = substr( $line, -1 ) === "\0";
-
 			$line = trim( $line );
 
 			# Filter comments
@@ -102,8 +95,8 @@ class GenerateEquivset extends Command {
 
 			# Process line
 			if ( !preg_match(
-				"/^(?P<hexleft> [A-F0-9]+) $sp+ (?P<charleft> .+?) $sp+ => $sp+ " .
-					"(?:(?P<hexright> [A-F0-9]+) $sp+|) (?P<charright> .+?) $sp* (?: \#.*|) $ /x",
+				'/^(?P<hexleft>[0-9A-F]+) +(?P<charleft>.) +=> +' .
+					'(?:(?P<hexright>[0-9A-F]+) +(?P<charright>.)|(?P<invisible>invisible))$/u',
 					$line, $m
 				)
 			) {
@@ -113,32 +106,18 @@ class GenerateEquivset extends Command {
 			}
 			$error = false;
 
-			if ( Utils::codepointToUtf8( hexdec( $m['hexleft'] ) ) != $m['charleft'] ) {
-				$actual = mb_strlen( $m['charleft'] ) > 1 ? false : mb_ord( $m['charleft'] );
-				if ( $actual === false ) {
-					$hexForm = bin2hex( $m['charleft'] );
-					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charleft']}\" ($hexForm) at " .
-						"line $lineNum: $line</error>" );
-				} else {
-					$actual = strtoupper( dechex( $actual ) );
-					$output->writeln( "<error>Error: left number ({$m['hexleft']}) does not match left " .
-						"character ($actual) at line $lineNum: $line</error>" );
-				}
+			if ( Utils::codepointToUtf8( hexdec( $m['hexleft'] ) ) !== $m['charleft'] ) {
+				$actual = strtoupper( dechex( mb_ord( $m['charleft'] ) ) );
+				$output->writeln( "<error>Error: left number ({$m['hexleft']}) does not match left " .
+					"character ($actual) at line $lineNum: $line</error>" );
 				$error = true;
 			}
-			if ( !empty( $m['hexright'] )
-				&& Utils::codepointToUtf8( hexdec( $m['hexright'] ) ) != $m['charright']
-			) {
-				$actual = mb_strlen( $m['charright'] ) > 1 ? false : mb_ord( $m['charright'] );
-				if ( $actual === false ) {
-					$hexForm = bin2hex( $m['charright'] );
-					$output->writeln( "<error>Invalid UTF-8 character \"{$m['charright']}\" ($hexForm) at " .
-						"line $lineNum: $line</error>" );
-				} else {
-					$actual = strtoupper( dechex( $actual ) );
-					$output->writeln( "<error>Error: right number ({$m['hexright']}) does not match right " .
-						"character ($actual) at line $lineNum: $line</error>" );
-				}
+			if ( isset( $m['invisible'] ) ) {
+				$m['charright'] = '';
+			} elseif ( Utils::codepointToUtf8( hexdec( $m['hexright'] ) ) !== $m['charright'] ) {
+				$actual = strtoupper( dechex( mb_ord( $m['charright'] ) ) );
+				$output->writeln( "<error>Error: right number ({$m['hexright']}) does not match right " .
+					"character ($actual) at line $lineNum: $line</error>" );
 				$error = true;
 			}
 			if ( isset( $setsByChar[$m['charleft']] ) ) {
@@ -156,9 +135,6 @@ class GenerateEquivset extends Command {
 			if ( $error ) {
 				$exitStatus = 1;
 				continue;
-			}
-			if ( $mapToEmpty || $m['charright'] == 'NUL' ) {
-				$m['charright'] = '';
 			}
 
 			# Find the set for the right character, add a new one if necessary
