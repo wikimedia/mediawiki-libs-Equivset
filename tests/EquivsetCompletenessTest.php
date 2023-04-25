@@ -18,6 +18,7 @@
 
 namespace Wikimedia\Equivset;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use UtfNormal\Utils;
 
@@ -62,7 +63,60 @@ class EquivsetCompletenessTest extends TestCase {
 		$this->assertSame( '', $missing );
 	}
 
-	private static function printChar( $char ) {
-		return $char . ' (' . strtoupper( dechex( Utils::utf8ToCodepoint( $char ) ) ) . ')';
+	public function testLowercaseStrictlyEqualsUppercase() {
+		$inputMap = [];
+
+		$fp = fopen( __DIR__ . '/../data/equivset.in', 'rb' );
+		// phpcs:ignore MediaWiki.ControlStructures.AssignmentInControlStructures
+		while ( ( $line = fgets( $fp ) ) !== false ) {
+			if ( !trim( $line ) || str_starts_with( $line, '#' ) ) {
+				continue;
+			}
+
+			$this->assertSame( 1, preg_match(
+				'/^\w+\h+([^\t ])\h*=>\h*\w*\h*([^\t ])/u', $line, $matches
+			), "Failed parsing \"$line\"" );
+			$inputMap[$matches[1]] = $matches[2];
+		}
+
+		$equivset = new Equivset();
+		$errors = '';
+
+		foreach ( $inputMap as $char => $replacement ) {
+			$char = (string)$char;
+
+			$ucChar = mb_strtoupper( $char );
+			if ( $char !== $ucChar &&
+				$ucChar !== $replacement &&
+				$equivset->isEqual( $char, $ucChar ) &&
+				( !isset( $inputMap[$ucChar] ) || $inputMap[$ucChar] !== $char )
+			) {
+				$errors .= 'Please map lowercase ' . self::printChar( $char ) . ' and uppercase ' .
+					self::printChar( $ucChar ) . " directly to each other\n";
+				continue;
+			}
+
+			$lcChar = mb_strtolower( $char );
+			if ( $char !== $lcChar &&
+				$lcChar !== $replacement &&
+				mb_strtoupper( $lcChar ) !== $replacement &&
+				$equivset->isEqual( $char, $lcChar ) &&
+				( !isset( $inputMap[$lcChar] ) || $inputMap[$lcChar] !== $char )
+			) {
+				$errors .= 'Please map uppercase ' . self::printChar( $char ) . ' and lowercase ' .
+					self::printChar( $lcChar ) . " directly to each other\n";
+			}
+		}
+
+		$this->assertSame( '', $errors );
 	}
+
+	private static function printChar( string $char ): string {
+		if ( mb_strlen( $char ) !== 1 ) {
+			throw new InvalidArgumentException( '"' . $char . '" is not a character' );
+		}
+
+		return '"' . strtoupper( dechex( Utils::utf8ToCodepoint( $char ) ) ) . ' ' . $char . '"';
+	}
+
 }
