@@ -29,24 +29,17 @@ use Wikimedia\Equivset\Exception\EquivsetException;
  */
 class EquivsetTest extends TestCase {
 
-	/**
-	 * @var EquivsetInterface
-	 */
+	/** @var EquivsetInterface */
 	protected $equivset;
 
-	/**
-	 * @var array
-	 */
+	/** @var array */
 	protected $data = [
 		'0' => 'O',
 	];
 
-	/**
-	 * Provide Spoof Data.
-	 */
 	public function providePositives() {
 		return [
-			/** Format: username -> spoofing attempt */
+			// Format: username -> spoofing attempt
 			[ 'Laura Fiorucci', 'Låura Fiorucci' ],
 			[ 'Lucien leGrey', 'Lucien le6rey' ],
 			[ 'Poco a poco', 'Poco a ƿoco' ],
@@ -63,11 +56,8 @@ class EquivsetTest extends TestCase {
 	}
 
 	/**
-	 * Some very basic normalization checks
-	 *
 	 * @param string $userName Normalized Username.
 	 * @param string $spooferName Spoofer Username.
-	 *
 	 * @dataProvider providePositives
 	 */
 	public function testCheckUnicodeString( $userName, $spooferName ) {
@@ -76,11 +66,6 @@ class EquivsetTest extends TestCase {
 		$this->assertTrue( $equivset->isEqual( $userName, $spooferName ) );
 	}
 
-	/**
-	 * Test Load
-	 *
-	 * Ensure that a mock equivset.ser file can be read without a problem.
-	 */
 	public function testLoadSer() {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.ser' )
@@ -91,11 +76,6 @@ class EquivsetTest extends TestCase {
 		$this->assertEquals( $this->data, $equivset->all() );
 	}
 
-	/**
-	 * Test Load
-	 *
-	 * Ensure that a mock equivset.php file can be read without a problem.
-	 */
 	public function testLoadPhp() {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.php' )
@@ -106,26 +86,21 @@ class EquivsetTest extends TestCase {
 		$this->assertEquals( $this->data, $equivset->all() );
 	}
 
-	/**
-	 * Test Load Failure
-	 *
-	 * Ensure that a non-existent file will throw an EquivsetException when data
-	 * is loaded.
-	 */
-	public function testLoadFailNoFile() {
+	public function testLoadFailNoSerFile() {
 		$root = vfsStream::setup();
-		$equivset = new Equivset( [], $root->url() . '/missing' );
+		$equivset = new Equivset( [], $root->url() . '/missing.ser' );
 		$this->expectException( EquivsetException::class );
-		$this->expectExceptionMessage( 'Serialized equivset is missing' );
+		$this->expectExceptionMessage( 'Serialized equivset file is unreadable' );
 		$equivset->all();
 	}
 
-	/**
-	 * Test Load Failure
-	 *
-	 * Ensure that an unreadable file will throw an EquivsetException when data is
-	 * loaded.
-	 */
+	public function testLoadFailNoPhpFile() {
+		$root = vfsStream::setup();
+		$equivset = new Equivset( [], $root->url() . '/missing.php' );
+		$this->expectError();
+		$equivset->all();
+	}
+
 	public function testLoadFailUnreadableFile() {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.ser', 0000 )
@@ -133,16 +108,10 @@ class EquivsetTest extends TestCase {
 			->at( $root );
 		$equivset = new Equivset( [], $file->url() );
 		$this->expectException( EquivsetException::class );
-		$this->expectExceptionMessage( 'Serialized equivset is unreadable' );
+		$this->expectExceptionMessage( 'Serialized equivset file is unreadable' );
 		$equivset->all();
 	}
 
-	/**
-	 * Test Load Failure
-	 *
-	 * Ensure that a file that cannot be unserialized will throw an
-	 * EquivsetException when data is loaded.
-	 */
 	public function testLoadFailUnseriableFile() {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.ser' )
@@ -155,8 +124,6 @@ class EquivsetTest extends TestCase {
 	}
 
 	/**
-	 * Gets the Equivset.
-	 *
 	 * @return Equivset
 	 */
 	protected function getEquivset() {
@@ -167,68 +134,41 @@ class EquivsetTest extends TestCase {
 		return $this->equivset;
 	}
 
-	/**
-	 * Test Get All.
-	 */
 	public function testAll() {
 		$data = $this->getEquivset()->all();
 		$this->assertEquals( 'O', $data[0] );
 	}
 
-	/**
-	 * Test Get All.
-	 */
 	public function testNormalize() {
 		$this->assertEquals( 'O', $this->getEquivset()->normalize( '0' ) );
 	}
 
-	/**
-	 * Test Get All.
-	 */
 	public function testIsEqual() {
 		$this->assertTrue( $this->getEquivset()->isEqual( '0', '0' ) );
 	}
 
-	/**
-	 * Tests Traversable.
-	 */
 	public function testTraversable() {
 		$this->assertInstanceOf( Traversable::class, $this->getEquivset() );
 	}
 
-	/**
-	 * Test Get Iterator.
-	 */
 	public function testGetIterator() {
 		$data = $this->getEquivset()->getIterator();
 		$this->assertEquals( 'O', $data[0] );
 		$this->assertInstanceOf( Traversable::class, $data );
 	}
 
-	/**
-	 * Test Has.
-	 */
 	public function testHas() {
 		$this->assertTrue( $this->getEquivset()->has( '0' ) );
 	}
 
-	/**
-	 * Test Has Not.
-	 */
 	public function testHasNot() {
 		$this->assertFalse( $this->getEquivset()->has( 'fail' ) );
 	}
 
-	/**
-	 * Test Get.
-	 */
 	public function testGet() {
 		$this->assertEquals( 'O', $this->getEquivset()->get( '0' ) );
 	}
 
-	/**
-	 * Test Get Fail.
-	 */
 	public function testGetFail() {
 		$this->expectException( LogicException::class );
 		$this->getEquivset()->get( 'fail' );

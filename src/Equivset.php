@@ -50,7 +50,7 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	}
 
 	/**
-	 * Gets the equivset.
+	 * Get the equivset.
 	 *
 	 * @return array<string,string> An associative array of equivalent characters.
 	 */
@@ -66,7 +66,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	 * {@inheritdoc}
 	 *
 	 * @param string $value The string to normalize against the equivset.
-	 *
 	 * @return string
 	 */
 	public function normalize( string $value ): string {
@@ -91,7 +90,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	 * {@inheritdoc}
 	 *
 	 * @param string $key The character that was used.
-	 *
 	 * @return bool If the character has an equivalent.
 	 */
 	public function has( string $key ): bool {
@@ -104,9 +102,7 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	 * {@inheritdoc}
 	 *
 	 * @param string $key The character that was used.
-	 *
 	 * @return string The equivalent character.
-	 *
 	 * @throws LogicException If character does not exist.
 	 */
 	public function get( string $key ): string {
@@ -129,32 +125,29 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	}
 
 	/**
-	 * Gets the equivset.
+	 * Get the equivset.
 	 *
 	 * @return array<string,string> An associative array of equivalent characters.
-	 *
-	 * @throws EquivsetException If the serialized equivset is not loaded.
+	 * @throws \Throwable If the serialized equivset file is unreadable.
 	 */
 	protected function load(): array {
-		if ( !file_exists( $this->serializedPath ) ) {
-			throw new EquivsetException( 'Serialized equivset is missing' );
-		}
-
-		if ( !is_readable( $this->serializedPath ) ) {
-			throw new EquivsetException( 'Serialized equivset is unreadable' );
-		}
-
 		if ( pathinfo( $this->serializedPath, PATHINFO_EXTENSION ) === 'php' ) {
-			$data = require $this->serializedPath;
-		} else {
-			// file_get_contents() will not fail at this point since none of the
-			// conditions that can cause a failure can happen at this point.
-			// @see http://php.net/manual/en/function.file-get-contents.php
-			$contents = file_get_contents( $this->serializedPath );
-
-			$data = unserialize( $contents );
+			// This will naturally throw if the file does not exist, is not readable,
+			// or can't be parsed.
+			return require $this->serializedPath;
 		}
 
+		// file_get_contents() will not fail at this point since none of the
+		// conditions that can cause a failure can happen at this point.
+		// See http://php.net/manual/en/function.file-get-contents.php
+
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$contents = @file_get_contents( $this->serializedPath );
+		if ( $contents === false ) {
+			throw new EquivsetException( 'Serialized equivset file is unreadable' );
+		}
+
+		$data = unserialize( $contents );
 		if ( $data === false ) {
 			throw new EquivsetException( 'Unserializing serialized equivset failed' );
 		}
