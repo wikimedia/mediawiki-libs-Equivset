@@ -71,8 +71,9 @@ class GenerateEquivset extends Command {
 	 * @return int Return status.
 	 */
 	public function execute( InputInterface $input, OutputInterface $output ) {
-		$lines = file( $this->dataDir . '/equivset.in', FILE_IGNORE_NEW_LINES );
-		if ( !$lines ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors
+		$fp = @fopen( $this->dataDir . '/equivset.in', 'rb' );
+		if ( $fp === false ) {
 			throw new Exception( "Unable to open equivset.in" );
 		}
 
@@ -80,13 +81,15 @@ class GenerateEquivset extends Command {
 		# So we need to make our own whitespace class
 		$sp = '[\ \t]';
 
+		$lineNum = 0;
 		$setsByChar = [];
 		$sets = [];
 		$exitStatus = 0;
 		$lastChar = null;
 
-		foreach ( $lines as $index => $line ) {
-			$lineNum = $index + 1;
+		// phpcs:ignore MediaWiki.ControlStructures.AssignmentInControlStructures
+		while ( ( $line = fgets( $fp ) ) !== false ) {
+			$lineNum++;
 			# Whether the line ends with a nul character
 			$mapToEmpty = substr( $line, -1 ) === "\0";
 

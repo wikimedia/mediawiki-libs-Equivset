@@ -142,8 +142,6 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
-			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
 			->at( $root );
 
