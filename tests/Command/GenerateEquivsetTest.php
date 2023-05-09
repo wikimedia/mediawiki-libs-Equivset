@@ -50,8 +50,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		// Run generate command
 		$command = new GenerateEquivset( '', $dist->url() );
-		$input = $this->getMockBuilder( InputInterface::class )->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 		$status = $command->execute( $input, $output );
 
 		// Compare the regenerated result against the current files
@@ -82,7 +82,7 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
+		vfsStream::newFile( 'equivset.in' )
 			->withContent( $in )
 			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
@@ -90,10 +90,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 
 		$status = $command->execute( $input, $output );
 
@@ -117,10 +115,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( '', $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 
 		$status = $command->execute( $input, $output );
 
@@ -147,10 +143,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 
 		$this->expectException( \Exception::class );
 		$this->expectExceptionMessage( 'Unable to open equivset.in' );
@@ -172,7 +166,7 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
+		vfsStream::newFile( 'equivset.in' )
 			->withContent( $in )
 			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
@@ -180,10 +174,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 		$output->method( 'writeln' )
 			->withConsecutive(
 				[ $this->stringContains( 'Error: invalid entry' ) ],
@@ -218,7 +210,7 @@ class GenerateEquivsetTest extends TestCase {
 	 *
 	 * @dataProvider provideNotMatchingCodePoints
 	 */
-	public function testExecuteFailNotMatchingCodepoint( $side, $number, $in ) {
+	public function testExecuteFailNotMatchingCodepoint( string $side, string $number, string $in ) {
 		$out = [
 			0 => 'O',
 		];
@@ -226,7 +218,7 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
+		vfsStream::newFile( 'equivset.in' )
 			->withContent( $in )
 			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
@@ -234,10 +226,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 		$output->method( 'writeln' )
 			->withConsecutive(
 				[ $this->stringContains( "Error: $side number ($number) does not match" ) ],
@@ -271,7 +261,7 @@ class GenerateEquivsetTest extends TestCase {
 	 *
 	 * @dataProvider provideInvalidChar
 	 */
-	public function testExecuteFailInvalidChar( $in ) {
+	public function testExecuteFailInvalidChar( string $in ) {
 		$out = [
 			0 => 'O',
 		];
@@ -279,7 +269,7 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
+		vfsStream::newFile( 'equivset.in' )
 			->withContent( $in )
 			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
@@ -287,10 +277,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 		$output->method( 'writeln' )
 			->withConsecutive(
 				[ $this->stringContains( 'Invalid UTF-8 character' ) ],
@@ -318,7 +306,7 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
+		vfsStream::newFile( 'equivset.in' )
 			->withContent( $in )
 			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
@@ -326,10 +314,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 		$output->method( 'writeln' )
 			->withConsecutive(
 				[ $this->stringContains( 'Duplicate character' ) ],
@@ -357,7 +343,7 @@ class GenerateEquivsetTest extends TestCase {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )
 			->at( $root );
-		$file = vfsStream::newFile( 'equivset.in' )
+		vfsStream::newFile( 'equivset.in' )
 			->withContent( $in )
 			->at( $data );
 		$dist = vfsStream::newDirectory( 'dist' )
@@ -365,10 +351,8 @@ class GenerateEquivsetTest extends TestCase {
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
-		$input = $this->getMockBuilder( InputInterface::class )
-			->getMock();
-		$output = $this->getMockBuilder( OutputInterface::class )
-			->getMock();
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
 		$output->method( 'writeln' )
 			->withConsecutive(
 				[ $this->stringContains( 'Characters not in order based on hex-value' ) ],

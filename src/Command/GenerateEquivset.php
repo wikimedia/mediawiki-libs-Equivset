@@ -45,7 +45,7 @@ class GenerateEquivset extends Command {
 	 * @param string $dataDir Data Directory
 	 * @param string $distDir Distribution Directory
 	 */
-	public function __construct( $dataDir = '', $distDir = '' ) {
+	public function __construct( string $dataDir = '', string $distDir = '' ) {
 		parent::__construct();
 
 		$this->dataDir = $dataDir ?: __DIR__ . '/../../data';

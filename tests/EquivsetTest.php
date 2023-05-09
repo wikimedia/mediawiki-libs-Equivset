@@ -29,11 +29,11 @@ use Wikimedia\Equivset\Exception\EquivsetException;
  */
 class EquivsetTest extends TestCase {
 
-	/** @var EquivsetInterface */
-	protected $equivset;
+	/** @var EquivsetInterface|null */
+	protected ?EquivsetInterface $equivset = null;
 
 	/** @var array */
-	protected $data = [
+	protected array $data = [
 		'0' => 'O',
 	];
 
@@ -60,7 +60,7 @@ class EquivsetTest extends TestCase {
 	 * @param string $spooferName Spoofer Username.
 	 * @dataProvider providePositives
 	 */
-	public function testCheckUnicodeString( $userName, $spooferName ) {
+	public function testCheckUnicodeString( string $userName, string $spooferName ) {
 		$equivset = new Equivset();
 
 		$this->assertTrue( $equivset->isEqual( $userName, $spooferName ) );
