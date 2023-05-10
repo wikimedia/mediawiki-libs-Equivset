@@ -189,15 +189,12 @@ class GenerateEquivset extends Command {
 			'available in serialized form, in equivset.ser.',
 		];
 
-		$jsonData = [
-			'_readme' => $header,
-		];
-
 		// JSON
 		$data = json_encode(
-			$jsonData + $setsByChar,
-			JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
+			[ '_readme' => implode( ' ', $header ) ] + $setsByChar,
+			JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
 		);
+		$data = preg_replace( '/^ +/m', "\t", $data );
 		file_put_contents( $this->distDir . '/equivset.json', $data );
 
 		// Serialized.
@@ -241,8 +238,8 @@ class GenerateEquivset extends Command {
 	}
 
 	/**
-	 * @param array $data
-	 * @param array $header
+	 * @param string[] $data
+	 * @param string[] $header
 	 * @return string
 	 */
 	private static function generatePHP( array $data, array $header ): string {
