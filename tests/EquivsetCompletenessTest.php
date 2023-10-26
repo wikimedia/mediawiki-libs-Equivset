@@ -67,7 +67,7 @@ class EquivsetCompletenessTest extends TestCase {
 		$inputMap = [];
 
 		$fp = fopen( __DIR__ . '/../data/equivset.in', 'rb' );
-		// phpcs:ignore MediaWiki.ControlStructures.AssignmentInControlStructures
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $line = fgets( $fp ) ) !== false ) {
 			if ( !trim( $line ) || str_starts_with( $line, '#' ) ) {
 				continue;
