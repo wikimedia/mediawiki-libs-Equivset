@@ -18,7 +18,7 @@
 
 namespace Wikimedia\Equivset\Command;
 
-use Exception;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -74,7 +74,7 @@ class GenerateEquivset extends Command {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors
 		$fp = @fopen( $this->dataDir . '/equivset.in', 'rb' );
 		if ( $fp === false ) {
-			throw new Exception( "Unable to open equivset.in" );
+			throw new RuntimeException( "Unable to open equivset.in" );
 		}
 
 		$lineNum = 0;
