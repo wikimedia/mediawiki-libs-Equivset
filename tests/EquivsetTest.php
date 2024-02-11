@@ -22,7 +22,6 @@ use LogicException;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use Traversable;
-use Wikimedia\Equivset\Exception\EquivsetException;
 
 /**
  * @covers \Wikimedia\Equivset\Equivset
@@ -66,16 +65,6 @@ class EquivsetTest extends TestCase {
 		$this->assertTrue( $equivset->isEqual( $userName, $spooferName ) );
 	}
 
-	public function testLoadSer() {
-		$root = vfsStream::setup();
-		$file = vfsStream::newFile( 'equivset.ser' )
-			->withContent( serialize( $this->data ) )
-			->at( $root );
-		$equivset = new Equivset( [], $file->url() );
-
-		$this->assertEquals( $this->data, $equivset->all() );
-	}
-
 	public function testLoadPhp() {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.php' )
@@ -86,40 +75,10 @@ class EquivsetTest extends TestCase {
 		$this->assertEquals( $this->data, $equivset->all() );
 	}
 
-	public function testLoadFailNoSerFile() {
-		$root = vfsStream::setup();
-		$equivset = new Equivset( [], $root->url() . '/missing.ser' );
-		$this->expectException( EquivsetException::class );
-		$this->expectExceptionMessage( 'Serialized equivset file is unreadable' );
-		$equivset->all();
-	}
-
 	public function testLoadFailNoPhpFile() {
 		$root = vfsStream::setup();
 		$equivset = new Equivset( [], $root->url() . '/missing.php' );
 		$this->expectError();
-		$equivset->all();
-	}
-
-	public function testLoadFailUnreadableFile() {
-		$root = vfsStream::setup();
-		$file = vfsStream::newFile( 'equivset.ser', 0000 )
-			->withContent( serialize( $this->data ) )
-			->at( $root );
-		$equivset = new Equivset( [], $file->url() );
-		$this->expectException( EquivsetException::class );
-		$this->expectExceptionMessage( 'Serialized equivset file is unreadable' );
-		$equivset->all();
-	}
-
-	public function testLoadFailUnseriableFile() {
-		$root = vfsStream::setup();
-		$file = vfsStream::newFile( 'equivset.ser' )
-			->withContent( '' )
-			->at( $root );
-		$equivset = new Equivset( [], $file->url() );
-		$this->expectException( EquivsetException::class );
-		$this->expectExceptionMessage( 'Unserializing serialized equivset failed' );
 		$equivset->all();
 	}
 

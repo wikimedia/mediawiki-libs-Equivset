@@ -60,7 +60,6 @@ class GenerateEquivsetTest extends TestCase {
 			'equivset.json',
 			'equivset.php',
 			'equivset.txt',
-			'equivset.ser',
 		] as $filename ) {
 			$this->assertSame(
 				file_get_contents( __DIR__ . '/../../dist/' . $filename ),
@@ -97,11 +96,9 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 0, $status );
 
-		$this->assertTrue( $dist->hasChild( 'equivset.ser' ) );
+		$this->assertTrue( $dist->hasChild( 'equivset.php' ) );
 		$this->assertTrue( $dist->hasChild( 'equivset.json' ) );
 		$this->assertTrue( $dist->hasChild( 'equivset.txt' ) );
-
-		$this->assertEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
 	}
 
 	/**
@@ -122,11 +119,11 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 0, $status );
 
-		$this->assertTrue( $dist->hasChild( 'equivset.ser' ) );
+		$this->assertTrue( $dist->hasChild( 'equivset.php' ) );
 		$this->assertTrue( $dist->hasChild( 'equivset.json' ) );
 		$this->assertTrue( $dist->hasChild( 'equivset.txt' ) );
 
-		$output = unserialize( $dist->getChild( 'equivset.ser' )->getContent() );
+		$output = require $dist->getChild( 'equivset.php' )->url();
 
 		$this->assertEquals( 'O', $output[0] );
 	}
@@ -185,7 +182,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 1, $status );
 
-		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
+		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 
 	/**
@@ -238,7 +235,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 1, $status );
 
-		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
+		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 
 	/**
@@ -289,7 +286,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 1, $status );
 
-		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
+		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 
 	/**
@@ -326,7 +323,7 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 1, $status );
 
-		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
+		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 
 	/**
@@ -363,6 +360,6 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertSame( 1, $status );
 
-		$this->assertNotEquals( serialize( $out ), $dist->getChild( 'equivset.ser' )->getContent() );
+		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 }

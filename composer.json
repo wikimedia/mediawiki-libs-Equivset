@@ -52,7 +52,6 @@
 			"minus-x check ."
 		],
 		"generate": "php bin/console --ansi generate-equivset",
-		"benchmark": "php -d 'opcache.enable_cli=1' bin/console --ansi benchmark-equivset",
 		"phpunit": "php -d 'extension=pcov.so' vendor/bin/phpunit",
 		"cover": "php -d 'extension=pcov.so' vendor/bin/phpunit --coverage-html coverage",
 		"fix": [

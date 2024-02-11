@@ -44,5 +44,5 @@ $all = $equivset->all();
 ## Contributing
 
 All changes should be made to `./data/equivset.in`. Then run
-`bin/console generate-equivset` to generate the JSON, serialized, and plain
+`bin/console generate-equivset` to generate the JSON, PHP, and plain
 text versions of the equivset in `./dist`.
