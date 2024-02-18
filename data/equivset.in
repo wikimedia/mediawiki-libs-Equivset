@@ -1170,6 +1170,12 @@ F0C ༌ => F0B ་
 10E7 ყ => 79 y
 10F3 ჳ => 33 3
 
+# Hangul Jamo
+# Range: 1100–11FF
+# https://www.unicode.org/charts/PDF/U1100.pdf
+115F ᅟ => space
+1160 ᅠ => space
+
 # Cherokee
 # Range: 13A0–13FF
 # https://www.unicode.org/charts/PDF/U13A0.pdf
@@ -1821,6 +1827,16 @@ F0C ༌ => F0B ་
 # General Punctuation
 # Range: 2000–206F
 # https://www.unicode.org/charts/PDF/U2000.pdf
+2000   => space
+2001   => space
+2002   => space
+2003   => space
+2004   => space
+2005   => space
+2006   => space
+2007   => space
+2008   => space
+2009   => space
 200A   => invisible
 200B ​ => invisible
 200C ‌ => invisible
@@ -1831,14 +1847,27 @@ F0C ༌ => F0B ་
 2029   => invisible
 202A ‪ => invisible
 202B ‫ => invisible
+202C ‬ => invisible
 202D ‭ => invisible
 202E ‮ => invisible
+202F   => space
 203D ‽ => 3F ?
+205F   => space
+2060 ⁠ => invisible
+2061 ⁡ => invisible
 2062 ⁢ => invisible
+2063 ⁣ => invisible
+2064 ⁤ => invisible
 2066 ⁦ => invisible
 2067 ⁧ => invisible
 2068 ⁨ => invisible
 2069 ⁩ => invisible
+206A ⁪ => invisible
+206B ⁫ => invisible
+206C ⁬ => invisible
+206D ⁭ => invisible
+206E ⁮ => invisible
+206F ⁯ => invisible
 
 # Superscripts and Subscripts
 # Range: 2070–209F
@@ -2262,6 +2291,11 @@ F0C ༌ => F0B ་
 # Range: 30A0–30FF
 # https://www.unicode.org/charts/PDF/U30A0.pdf
 30D8 ヘ => 3078 へ
+
+# Hangul Compatibility Jamo
+# Range: 3130–318F
+# https://www.unicode.org/charts/PDF/U3130.pdf
+3164 ㅤ => space
 
 # CJK Unified Ideographs Extension A
 # Range: 3400–4DBF

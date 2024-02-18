@@ -96,8 +96,8 @@ class GenerateEquivset extends Command {
 			# Process line
 			if ( !preg_match(
 				'/^(?P<hexleft>[0-9A-F]+) +(?P<charleft>.) +=> +' .
-					'(?:(?P<hexright>[0-9A-F]+) +(?P<charright>.)|(?P<invisible>invisible))$/u',
-					$line, $m
+					'(?:(?P<hexright>[0-9A-F]+) +(?P<charright>.)|(?P<invisible>invisible)|(?P<space>space))$/u',
+					$line, $m, PREG_UNMATCHED_AS_NULL
 				)
 			) {
 				$output->writeln( "<error>Error: invalid entry at line $lineNum: $line</error>" );
@@ -114,6 +114,8 @@ class GenerateEquivset extends Command {
 			}
 			if ( isset( $m['invisible'] ) ) {
 				$m['charright'] = '';
+			} elseif ( isset( $m['space'] ) ) {
+				$m['charright'] = ' ';
 			} elseif ( Utils::codepointToUtf8( hexdec( $m['hexright'] ) ) !== $m['charright'] ) {
 				$actual = strtoupper( dechex( mb_ord( $m['charright'] ) ) );
 				$output->writeln( "<error>Error: right number ({$m['hexright']}) does not match right " .
