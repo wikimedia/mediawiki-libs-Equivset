@@ -1361,8 +1361,52 @@ F0C ༌ => F0B ་
 # Georgian Extended
 # Range: 1C90–1CBF
 # https://www.unicode.org/charts/PDF/U1C90.pdf
+1C90 Ა => 10D0 ა
+1C91 Ბ => 10D1 ბ
+1C92 Გ => 10D2 გ
+1C93 Დ => 10D3 დ
+1C94 Ე => 10D4 ე
+1C95 Ვ => 10D5 ვ
+1C96 Ზ => 10D6 ზ
+1C97 Თ => 10D7 თ
+1C98 Ი => 10D8 ი
+1C99 Კ => 10D9 კ
+1C9A Ლ => 10DA ლ
+1C9B Მ => 10DB მ
+1C9C Ნ => 10DC ნ
+1C9D Ო => 10DD ო
+1C9E Პ => 10DE პ
+1C9F Ჟ => 10DF ჟ
+1CA0 Რ => 10E0 რ
+1CA1 Ს => 10E1 ს
+1CA2 Ტ => 10E2 ტ
+1CA3 Უ => 10E3 უ
+1CA4 Ფ => 10E4 ფ
+1CA5 Ქ => 10E5 ქ
+1CA6 Ღ => 10E6 ღ
 1CA7 Ყ => 10E7 ყ
+1CA8 Შ => 10E8 შ
+1CA9 Ჩ => 10E9 ჩ
+1CAA Ც => 10EA ც
+1CAB Ძ => 10EB ძ
+1CAC Წ => 10EC წ
+1CAD Ჭ => 10ED ჭ
+1CAE Ხ => 10EE ხ
+1CAF Ჯ => 10EF ჯ
+1CB0 Ჰ => 10F0 ჰ
+1CB1 Ჱ => 10F1 ჱ
+1CB2 Ჲ => 10F2 ჲ
 1CB3 Ჳ => 10F3 ჳ
+1CB4 Ჴ => 10F4 ჴ
+1CB5 Ჵ => 10F5 ჵ
+1CB6 Ჶ => 10F6 ჶ
+1CB7 Ჷ => 10F7 ჷ
+1CB8 Ჸ => 10F8 ჸ
+1CB9 Ჹ => 10F9 ჹ
+1CBA Ჺ => 10FA ჺ
+1CBD Ჽ => 10FD ჽ
+1CBE Ჾ => 10FE ჾ
+1CBF Ჿ => 10FF ჿ
 
 # Phonetic Extensions
 # Range: 1D00–1D7F
@@ -2484,6 +2528,50 @@ F0C ༌ => F0B ་
 # https://www.unicode.org/charts/PDF/U2C80.pdf
 2C98 Ⲙ => 4D M
 2C99 ⲙ => 2C98 Ⲙ
+
+# Georgian Supplement
+# Range: 2D00–2D2F
+# https://www.unicode.org/charts/PDF/U2D00.pdf
+2D00 ⴀ => 10A0 Ⴀ
+2D01 ⴁ =>  10A1 Ⴁ
+2D02 ⴂ =>  10A2 Ⴂ
+2D03 ⴃ =>  10A3 Ⴃ
+2D04 ⴄ =>  10A4 Ⴄ
+2D05 ⴅ =>  10A5 Ⴅ
+2D06 ⴆ =>  10A6 Ⴆ
+2D07 ⴇ =>  10A7 Ⴇ
+2D08 ⴈ =>  10A8 Ⴈ
+2D09 ⴉ =>  10A9 Ⴉ
+2D0A ⴊ =>  10AA Ⴊ
+2D0B ⴋ =>  10AB Ⴋ
+2D0C ⴌ =>  10AC  Ⴌ
+2D0D ⴍ =>  10AD Ⴍ
+2D0E ⴎ =>  10AE Ⴎ
+2D0F ⴏ =>  10AF Ⴏ
+2D10 ⴐ =>  10B0 Ⴐ
+2D11 ⴑ =>  10B1 Ⴑ
+2D12 ⴒ =>  10B2 Ⴒ
+2D13 ⴓ =>  10B3 Ⴓ
+2D14 ⴔ =>  10B4 Ⴔ
+2D15 ⴕ =>  10B5 Ⴕ
+2D16 ⴖ =>  10B6 Ⴖ
+2D17 ⴗ =>  10B7 Ⴗ
+2D18 ⴘ =>  10B8 Ⴘ
+2D19 ⴙ =>  10B9 Ⴙ
+2D1A ⴚ =>  10BA Ⴚ
+2D1B ⴛ =>  10BB Ⴛ
+2D1C ⴜ =>  10BC Ⴜ
+2D1D ⴝ =>  10BD Ⴝ
+2D1E ⴞ =>  10BE Ⴞ
+2D1F ⴟ =>  10BF Ⴟ
+2D20 ⴠ =>  10C0 Ⴠ
+2D21 ⴡ =>  10C1 Ⴡ
+2D22 ⴢ =>  10C2 Ⴢ
+2D23 ⴣ =>  10C3 Ⴣ
+2D24 ⴤ =>  10C4 Ⴤ
+2D25 ⴥ =>  10C5 Ⴥ
+2D27 ⴧ =>  10C7 Ⴧ
+2D2D ⴭ =>  10CD Ⴭ
 
 # Tifinagh
 # Range: 2D30–2D7F
