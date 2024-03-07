@@ -24,8 +24,7 @@
 		}
 	},
 	"require": {
-		"php": ">=7.4.3",
-		"wikimedia/utfnormal": "^3.0.1 || ^4.0.0"
+		"php": ">=7.4.3"
 	},
 	"require-dev": {
 		"ext-json": "*",

@@ -22,7 +22,6 @@ use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use UtfNormal\Utils;
 
 /**
  * Generate Equivset Command.
@@ -106,7 +105,7 @@ class GenerateEquivset extends Command {
 			}
 			$error = false;
 
-			if ( Utils::codepointToUtf8( hexdec( $m['hexleft'] ) ) !== $m['charleft'] ) {
+			if ( mb_chr( hexdec( $m['hexleft'] ) ) !== $m['charleft'] ) {
 				$actual = strtoupper( dechex( mb_ord( $m['charleft'] ) ) );
 				$output->writeln( "<error>Error: left number ({$m['hexleft']}) does not match left " .
 					"character ($actual) at line $lineNum: $line</error>" );
@@ -116,7 +115,7 @@ class GenerateEquivset extends Command {
 				$m['charright'] = '';
 			} elseif ( isset( $m['space'] ) ) {
 				$m['charright'] = ' ';
-			} elseif ( Utils::codepointToUtf8( hexdec( $m['hexright'] ) ) !== $m['charright'] ) {
+			} elseif ( mb_chr( hexdec( $m['hexright'] ) ) !== $m['charright'] ) {
 				$actual = strtoupper( dechex( mb_ord( $m['charright'] ) ) );
 				$output->writeln( "<error>Error: right number ({$m['hexright']}) does not match right " .
 					"character ($actual) at line $lineNum: $line</error>" );

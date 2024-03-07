@@ -20,7 +20,6 @@ namespace Wikimedia\Equivset;
 
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
-use UtfNormal\Utils;
 
 /**
  * @coversNothing
@@ -117,7 +116,7 @@ class EquivsetCompletenessTest extends TestCase {
 			throw new InvalidArgumentException( '"' . $char . '" is not a character' );
 		}
 
-		return '"' . strtoupper( dechex( Utils::utf8ToCodepoint( $char ) ) ) . ' ' . $char . '"';
+		return '"' . strtoupper( dechex( mb_ord( $char ) ) ) . ' ' . $char . '"';
 	}
 
 }
