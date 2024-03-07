@@ -38,6 +38,7 @@ class EquivsetCompletenessTest extends TestCase {
 		$missing = '';
 		foreach ( $data as $char => $replacement ) {
 			$ucChar = mb_strtoupper( $char );
+			// Skip when the corresponding character is a composite and not an individual codepoint
 			if ( mb_strlen( $ucChar ) === 1
 				&& $char !== $ucChar
 				&& $ucChar !== $replacement
@@ -49,11 +50,11 @@ class EquivsetCompletenessTest extends TestCase {
 			}
 
 			$lcChar = mb_strtolower( $char );
-			if ( mb_strlen( $ucChar ) === 1
+			// Skip when the corresponding character is a composite and not an individual codepoint
+			if ( mb_strlen( $lcChar ) === 1
 				&& $char !== $lcChar
 				&& $lcChar !== $replacement
 				&& !isset( $data[$lcChar] )
-				&& $char !== 'İ'
 			) {
 				$missing .= 'Lower case character ' . self::printChar( $lcChar ) . ' not in the set ' .
 					'(mapping based on upper case character is ' . self::printChar( $replacement ) . ")\n";
