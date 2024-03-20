@@ -574,6 +574,7 @@ FF ÿ => 178 Ÿ
 # Greek and Coptic
 # Range: 0370–03FF
 # https://www.unicode.org/charts/PDF/U0370.pdf
+371 ͱ => 370 Ͱ
 372 Ͳ => 54 T
 373 ͳ => 372 Ͳ
 376 Ͷ => 4E N
@@ -652,16 +653,27 @@ FF ÿ => 178 Ÿ
 3D5 ϕ => 3A6 Φ
 3D6 ϖ => 3C9 ω
 3D7 ϗ => 377 ͷ
+3D9 ϙ => 3D8 Ϙ
+3DB ϛ => 3DA Ϛ
 3DC Ϝ => 46 F
 3DD ϝ => 3DC Ϝ
+3DF ϟ => 3DE Ϟ
+3E1 ϡ => 3E0 Ϡ
+3E3 ϣ => 3E2 Ϣ
+3E5 ϥ => 3E4 Ϥ
+3E7 ϧ => 3E6 Ϧ
 3E8 Ϩ => 32 2
 3E9 ϩ => 3E8 Ϩ
+3EB ϫ => 3EA Ϫ
+3ED ϭ => 3EC Ϭ
+3EF ϯ => 3EE Ϯ
 3F1 ϱ => 3A1 Ρ
 3F2 ϲ => 3F9 Ϲ
 3F3 ϳ => 37F Ϳ
 3F4 ϴ => 3B8 θ
 3F5 ϵ => 395 Ε
 3F6 ϶ => 33 3
+3F8 ϸ => 3F7 Ϸ
 3F9 Ϲ => 43 C
 3FA Ϻ => 4D M
 3FB ϻ => 3FA Ϻ
@@ -2538,8 +2550,32 @@ F0C ༌ => F0B ་
 # Coptic
 # Range: 2C80–2CFF
 # https://www.unicode.org/charts/PDF/U2C80.pdf
+2C81 ⲁ => 2C80 Ⲁ
+2C83 ⲃ => 2C82 Ⲃ
+2C85 ⲅ => 2C84 Ⲅ
+2C87 ⲇ => 2C86 Ⲇ
+2C89 ⲉ => 2C88 Ⲉ
+2C8B ⲋ => 2C8A Ⲋ
+2C8D ⲍ => 2C8C Ⲍ
+2C8F ⲏ => 2C8E Ⲏ
+2C91 ⲑ => 2C90 Ⲑ
+2C93 ⲓ => 2C92 Ⲓ
+2C95 ⲕ => 2C94 Ⲕ
+2C97 ⲗ => 2C96 Ⲗ
 2C98 Ⲙ => 4D M
 2C99 ⲙ => 2C98 Ⲙ
+2C9B ⲛ => 2C9A Ⲛ
+2C9D ⲝ => 2C9C Ⲝ
+2C9F ⲟ => 2C9E Ⲟ
+2CA1 ⲡ => 2CA0 Ⲡ
+2CA3 ⲣ => 2CA2 Ⲣ
+2CA5 ⲥ => 2CA4 Ⲥ
+2CA7 ⲧ => 2CA6 Ⲧ
+2CA9 ⲩ => 2CA8 Ⲩ
+2CAB ⲫ => 2CAA Ⲫ
+2CAD ⲭ => 2CAC Ⲭ
+2CAF ⲯ => 2CAE Ⲯ
+2CB1 ⲱ => 2CB0 Ⲱ
 
 # Georgian Supplement
 # Range: 2D00–2D2F
