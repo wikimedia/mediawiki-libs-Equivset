@@ -19,6 +19,7 @@
 namespace Wikimedia\Equivset\Command;
 
 use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -44,9 +45,7 @@ class GenerateEquivsetTest extends TestCase {
 	 */
 	public function testRegeneratedDist() {
 		// Define a temp storage for the regenerated files
-		$root = vfsStream::setup();
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ , $dist ] = $this->mockFileSystem();
 
 		// Run generate command
 		$command = new GenerateEquivset( '', $dist->url() );
@@ -74,18 +73,8 @@ class GenerateEquivsetTest extends TestCase {
 	 */
 	public function testExecute() {
 		$in = "# Testing...\n30 0 => 4F O";
-		$out = [
-			0 => 'O',
-		];
 
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		vfsStream::newFile( 'equivset.in' )
-			->withContent( $in )
-			->at( $data );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem( $in );
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -106,9 +95,7 @@ class GenerateEquivsetTest extends TestCase {
 	 */
 	public function testLiveExecute() {
 		// Write the output to memory.
-		$root = vfsStream::setup();
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ , $dist ] = $this->mockFileSystem();
 
 		$command = new GenerateEquivset( '', $dist->url() );
 
@@ -132,11 +119,7 @@ class GenerateEquivsetTest extends TestCase {
 	 * Test Execute Fail Open
 	 */
 	public function testExecuteFailOpen() {
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem();
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -160,14 +143,7 @@ class GenerateEquivsetTest extends TestCase {
 			0 => 'O',
 		];
 
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		vfsStream::newFile( 'equivset.in' )
-			->withContent( $in )
-			->at( $data );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem( $in );
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -212,14 +188,7 @@ class GenerateEquivsetTest extends TestCase {
 			0 => 'O',
 		];
 
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		vfsStream::newFile( 'equivset.in' )
-			->withContent( $in )
-			->at( $data );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem( $in );
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -263,14 +232,7 @@ class GenerateEquivsetTest extends TestCase {
 			0 => 'O',
 		];
 
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		vfsStream::newFile( 'equivset.in' )
-			->withContent( $in )
-			->at( $data );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem( $in );
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -300,14 +262,7 @@ class GenerateEquivsetTest extends TestCase {
 			0 => 'O',
 		];
 
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		vfsStream::newFile( 'equivset.in' )
-			->withContent( $in )
-			->at( $data );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem( $in );
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -337,14 +292,7 @@ class GenerateEquivsetTest extends TestCase {
 			0 => 'O',
 		];
 
-		$root = vfsStream::setup();
-		$data = vfsStream::newDirectory( 'data' )
-			->at( $root );
-		vfsStream::newFile( 'equivset.in' )
-			->withContent( $in )
-			->at( $data );
-		$dist = vfsStream::newDirectory( 'dist' )
-			->at( $root );
+		[ $data, $dist ] = $this->mockFileSystem( $in );
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
@@ -362,4 +310,18 @@ class GenerateEquivsetTest extends TestCase {
 
 		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
+
+	/**
+	 * @return array{vfsStreamDirectory,vfsStreamDirectory}
+	 */
+	private function mockFileSystem( string $in = null ): array {
+		$root = vfsStream::setup();
+		$data = vfsStream::newDirectory( 'data' )->at( $root );
+		$dist = vfsStream::newDirectory( 'dist' )->at( $root );
+		if ( $in ) {
+			vfsStream::newFile( 'equivset.in' )->withContent( $in )->at( $data );
+		}
+		return [ $data, $dist ];
+	}
+
 }
