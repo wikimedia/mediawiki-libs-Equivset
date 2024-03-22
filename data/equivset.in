@@ -2126,6 +2126,12 @@ F0C ༌ => F0B ་
 202E ‮ => invisible
 202F   => space
 203D ‽ => 3F ?
+2045 ⁅ => 5B [
+2046 ⁆ => 5D ]
+2047 ⁇ => 3F ?
+2048 ⁈ => 203D ‽
+2049 ⁉ => 203D ‽
+204A ⁊ => 2E52 ⹒
 205F   => space
 2060 ⁠ => invisible
 2061 ⁡ => invisible
@@ -2514,6 +2520,24 @@ F0C ༌ => F0B ་
 2792 ➒ => 277E ❾
 2793 ➓ => 277F ❿
 
+# Miscellaneous Mathematical Symbols-B
+# Range: 2980–29FF
+# https://www.unicode.org/charts/PDF/U2980.pdf
+2985 ⦅ => 28 (
+2986 ⦆ => 29 )
+298B ⦋ => 5B [
+298C ⦌ => 5D ]
+298D ⦍ => 5B [
+298E ⦎ => 5D ]
+298F ⦏ => 5B [
+2990 ⦐ => 5D ]
+2993 ⦓ => 3C <
+2994 ⦔ => 3E >
+2995 ⦕ => 3E >
+2996 ⦖ => 3C <
+29F5 ⧵ => 5C \
+29F9 ⧹ => 29F5 ⧵
+
 # Latin Extended-C
 # Range: 2C60–2C7F
 # https://www.unicode.org/charts/PDF/U2C60.pdf
@@ -2659,7 +2683,15 @@ F0C ༌ => F0B ་
 # Range: 2E00–2E7F
 # https://www.unicode.org/charts/PDF/U2E00.pdf
 2E18 ⸘ => BF ¿
+2E28 ⸨ => 2985 ⦅
+2E29 ⸩ => 2986 ⦆
 2E2E ⸮ => 3F ?
+2E52 ⹒ => 37 7
+2E54 ⹔ => 3F ?
+2E55 ⹕ => 2045 ⁅
+2E56 ⹖ => 2046 ⁆
+2E57 ⹗ => 2E55 ⹕
+2E58 ⹘ => 2E56 ⹖
 
 # CJK Symbols and Punctuation
 # Range: 3000–303F
@@ -7618,6 +7650,12 @@ FEDA ﻚ => FED9 ﻙ
 # Halfwidth and Fullwidth Forms
 # Range: FF00–FFEF
 # https://www.unicode.org/charts/PDF/UFF00.pdf
+FF02 ＂ => 22 "
+FF04 ＄ => 24 $
+FF07 ＇ => 27 '
+FF08 （ => 28 (
+FF09 ） => 29 )
+FF0E ． => 2E .
 FF10 ０ => 0030 0
 FF11 １ => 0031 1
 FF12 ２ => 0032 2
@@ -7693,6 +7731,9 @@ FF57 ｗ => FF37 Ｗ
 FF58 ｘ => FF38 Ｘ
 FF59 ｙ => FF39 Ｙ
 FF5A ｚ => FF3A Ｚ
+FF5C ｜ => 7C |
+FF5F ｟ => 2985 ⦅
+FF60 ｠ => 2986 ⦆
 FF61 ｡ => 3002 。
 FF62 ｢ => 300C 「
 FF63 ｣ => 300D 」
@@ -7808,6 +7849,10 @@ FFD7 ￗ => 3160 ㅠ
 FFDA ￚ => 3161 ㅡ
 FFDB ￛ => 3162 ㅢ
 FFDC ￜ => 3163 ㅣ
+FFE0 ￠ => A2 ¢
+FFE1 ￡ => A3 £
+FFE5 ￥ => A5 ¥
+FFE6 ￦ => 20A9 ₩
 
 # Gothic
 # Range: 10330–1034F
