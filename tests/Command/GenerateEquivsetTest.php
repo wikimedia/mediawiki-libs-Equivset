@@ -311,6 +311,38 @@ class GenerateEquivsetTest extends TestCase {
 		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 
+	public function testMappingToSelf() {
+		$in = "41 A => 41 A";
+
+		[ $data, $dist ] = $this->mockFileSystem( $in );
+		$generator = new GenerateEquivset( $data->url(), $dist->url() );
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
+		$output->method( 'writeln' )
+			->withConsecutive(
+				[ $this->stringContains( 'maps to itself' ) ],
+				[ $this->stringContains( 'Finished with errors' ) ]
+			);
+
+		$status = $generator->execute( $input, $output );
+		$this->assertSame( 1, $status );
+	}
+
+	public function testCircularMappings() {
+		$in = "41 A => 61 a\n61 a => 41 A";
+		$out = [ 'A' => 'a' ];
+		$txt = "a A\n";
+
+		[ $data, $dist ] = $this->mockFileSystem( $in );
+		$generator = new GenerateEquivset( $data->url(), $dist->url() );
+		$input = $this->createMock( InputInterface::class );
+		$output = $this->createMock( OutputInterface::class );
+
+		$status = $generator->execute( $input, $output );
+		$this->assertSame( $out, require $dist->getChild( 'equivset.php' )->url() );
+		$this->assertSame( $txt, $dist->getChild( 'equivset.txt' )->getContent() );
+	}
+
 	/**
 	 * @return array{vfsStreamDirectory,vfsStreamDirectory}
 	 */

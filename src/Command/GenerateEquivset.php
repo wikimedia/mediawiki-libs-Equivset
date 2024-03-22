@@ -121,6 +121,10 @@ class GenerateEquivset extends Command {
 					"character ($actual) at line $lineNum: $line</error>" );
 				$error = true;
 			}
+			if ( $m['charleft'] === $m['charright'] ) {
+				$output->writeln( "<error>Error: {$m['hexright']} maps to itself</error>" );
+				$error = true;
+			}
 			if ( isset( $setsByChar[$m['charleft']] ) ) {
 				$output->writeln( "<error>Error: Duplicate character ({$m['charleft']}) " .
 					"at line $lineNum: $line</error>" );
@@ -141,9 +145,12 @@ class GenerateEquivset extends Command {
 			# Find the set for the right character, add a new one if necessary
 			$setName = $setsByChar[$m['charright']] ?? $m['charright'];
 
-			if ( !isset( $sets[$setName] ) ) {
-				$sets[$setName] = [ $setName ];
+			// Circle detected, one edge in every circle is redundant and can just be ignored
+			if ( $setName === $m['charleft'] ) {
+				continue;
 			}
+
+			$sets[$setName] ??= [ $setName ];
 
 			// When a mapping between two chars exists before one of them gets the final set, a merge is needed
 			if ( isset( $sets[$m['charleft']] ) ) {
