@@ -2810,6 +2810,26 @@ F0C ༌ => F0B ་
 # https://www.unicode.org/charts/PDF/U3130.pdf
 3164 ㅤ => space
 
+# Katakana Phonetic Extensions
+# Range: 31F0–31FF
+# https://www.unicode.org/charts/PDF/31F0.pdf
+31F0 ㇰ => 30AF ク
+31F1 ㇱ => 30B7 シ
+31F2 ㇲ => 30B9 ス
+31F3 ㇳ => 30C8 ト
+31F4 ㇴ => 30CC ヌ
+31F5 ㇵ => 30CF ハ
+31F6 ㇶ => 30D2 ヒ
+31F7 ㇷ => 30D5 フ
+31F8 ㇸ => 30D8 ヘ
+31F9 ㇹ => 30DB ホ
+31FA ㇺ => 30E0 ム
+31FB ㇻ => 30E9 ラ
+31FC ㇼ => 30EA リ
+31FD ㇽ => 30EB ル
+31FE ㇾ => 30EC レ
+31FF ㇿ => 30ED ロ
+
 # CJK Unified Ideographs Extension A
 # Range: 3400–4DBF
 # https://www.unicode.org/charts/PDF/U3400.pdf
