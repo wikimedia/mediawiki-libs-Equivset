@@ -7650,12 +7650,21 @@ FEDA ﻚ => FED9 ﻙ
 # Halfwidth and Fullwidth Forms
 # Range: FF00–FFEF
 # https://www.unicode.org/charts/PDF/UFF00.pdf
+FF01 ！ => 21 !
 FF02 ＂ => 22 "
+FF03 ＃ => 23 #
 FF04 ＄ => 24 $
+FF05 ％ => 25 %
+FF06 ＆ => 26 &
 FF07 ＇ => 27 '
 FF08 （ => 28 (
 FF09 ） => 29 )
+FF0A ＊ => 2A *
+FF0B ＋ => 2B +
+FF0C ， => 2C ,
+FF0D － => 2D -
 FF0E ． => 2E .
+FF0F ／ => 2F /
 FF10 ０ => 0030 0
 FF11 １ => 0031 1
 FF12 ２ => 0032 2
@@ -7731,7 +7740,10 @@ FF57 ｗ => FF37 Ｗ
 FF58 ｘ => FF38 Ｘ
 FF59 ｙ => FF39 Ｙ
 FF5A ｚ => FF3A Ｚ
+FF5B ｛ => 7B {
 FF5C ｜ => 7C |
+FF5D ｝ => 7D }
+FF5E ～ => 7E ~
 FF5F ｟ => 2985 ⦅
 FF60 ｠ => 2986 ⦆
 FF61 ｡ => 3002 。
@@ -7851,8 +7863,18 @@ FFDB ￛ => 3162 ㅢ
 FFDC ￜ => 3163 ㅣ
 FFE0 ￠ => A2 ¢
 FFE1 ￡ => A3 £
+FFE2 ￢ => AC ¬
+FFE3 ￣ => AF ¯
+FFE4 ￤ => A6 ¦
 FFE5 ￥ => A5 ¥
 FFE6 ￦ => 20A9 ₩
+FFE8 ￨ => 2502 │
+FFE9 ￩ => 2190 ←
+FFEA ￪ => 2191 ↑
+FFEB ￫ => 2192 →
+FFEC ￬ => 2193 ↓
+FFED ￭ => 25A0 ■
+FFEE ￮ => 25CB ○
 
 # Gothic
 # Range: 10330–1034F
