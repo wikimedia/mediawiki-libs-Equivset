@@ -1302,8 +1302,15 @@ F0C ༌ => F0B ་
 # Hangul Jamo
 # Range: 1100–11FF
 # https://www.unicode.org/charts/PDF/U1100.pdf
+1102 ᄂ => 4C L
+1103 ᄃ => 43 C
+110B ᄋ => 4F O
+1110 ᄐ => 45 E
 115F ᅟ => space
 1160 ᅠ => space
+1162 ᅢ => 48 H
+116E ᅮ => 54 T
+1175 ᅵ => 49 I
 11A8 ᆨ => 1100 ᄀ
 11A9 ᆩ => 1101 ᄁ
 11AB ᆫ => 1102 ᄂ
