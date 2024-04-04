@@ -18,6 +18,7 @@
 
 namespace Wikimedia\Equivset;
 
+use Error;
 use LogicException;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
@@ -75,8 +76,19 @@ class EquivsetTest extends TestCase {
 	public function testLoadFailNoPhpFile() {
 		$root = vfsStream::setup();
 		$equivset = new Equivset( [], $root->url() . '/missing.php' );
-		$this->expectError();
-		$equivset->all();
+		try {
+			set_error_handler( static function () {
+				// Suppress the warning text
+			}, E_ERROR | E_WARNING );
+
+			$equivset->all();
+
+			$this->fail( "No PHP error was emitted." );
+		} catch ( Error $e ) {
+			$this->addToAssertionCount( 1 );
+		} finally {
+			restore_error_handler();
+		}
 	}
 
 	protected function getEquivset(): Equivset {
