@@ -2959,6 +2959,17 @@ F0C ༌ => F0B ་
 30FD ヽ => 309D ゝ
 30FE ヾ => 30FD ヽ
 
+# Bopomofo
+# Range: 3100–312F
+# https://www.unicode.org/charts/PDF/U3100.pdf
+3108 ㄈ => 43 C
+3110 ㄐ => 34 4
+3112 ㄒ => 54 T
+3117 ㄗ => 50 P
+311A ㄚ => 59 Y
+3125 ㄥ => 4C L
+3128 ㄨ => 58 X
+
 # Hangul Compatibility Jamo
 # Range: 3130–318F
 # https://www.unicode.org/charts/PDF/U3130.pdf
@@ -3056,6 +3067,13 @@ F0C ༌ => F0B ་
 318C ㆌ => 1194 ᆔ
 318D ㆍ => 119E ᆞ
 318E ㆎ => 11A1 ᆡ
+
+# Bopomofo Extended
+# Range: 31A0–31BF
+# https://www.unicode.org/charts/PDF/U31A0.pdf
+31B2 ㆲ => 49 I
+31B8 ㆸ => 5A Z
+31B9 ㆹ => 4C L
 
 # Katakana Phonetic Extensions
 # Range: 31F0–31FF
