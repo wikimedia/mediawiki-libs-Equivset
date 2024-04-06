@@ -20,6 +20,7 @@ namespace Wikimedia\Equivset\Command;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -148,12 +149,10 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
-		$output->method( 'writeln' )
-			->withConsecutive(
-				[ $this->stringContains( 'Error: invalid entry' ) ],
-				[ $this->stringContains( 'Finished with errors' ) ]
-			);
+		$output = $this->buildOutputInterfaceMock( [
+			'Error: invalid entry',
+			'Finished with errors',
+		] );
 		$status = $command->execute( $input, $output );
 
 		$this->assertSame( 1, $status );
@@ -193,12 +192,10 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
-		$output->method( 'writeln' )
-			->withConsecutive(
-				[ $this->stringContains( "Error: $side number ($number) does not match" ) ],
-				[ $this->stringContains( 'Finished with errors' ) ]
-			);
+		$output = $this->buildOutputInterfaceMock( [
+			"Error: $side number ($number) does not match",
+			'Finished with errors',
+		] );
 
 		$status = $command->execute( $input, $output );
 
@@ -237,12 +234,10 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
-		$output->method( 'writeln' )
-			->withConsecutive(
-				[ $this->stringContains( 'Error: invalid entry at line 1:' ) ],
-				[ $this->stringContains( 'Finished with errors' ) ]
-			);
+		$output = $this->buildOutputInterfaceMock( [
+			'Error: invalid entry at line 1:',
+			'Finished with errors',
+		] );
 
 		$status = $command->execute( $input, $output );
 
@@ -267,12 +262,10 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
-		$output->method( 'writeln' )
-			->withConsecutive(
-				[ $this->stringContains( 'Duplicate character' ) ],
-				[ $this->stringContains( 'Finished with errors' ) ]
-			);
+		$output = $this->buildOutputInterfaceMock( [
+			'Duplicate character',
+			'Finished with errors',
+		] );
 
 		$status = $command->execute( $input, $output );
 
@@ -297,12 +290,10 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
-		$output->method( 'writeln' )
-			->withConsecutive(
-				[ $this->stringContains( 'Characters not in order based on hex-value' ) ],
-				[ $this->stringContains( 'Finished with errors' ) ]
-			);
+		$output = $this->buildOutputInterfaceMock( [
+			'Characters not in order based on hex-value',
+			'Finished with errors',
+		] );
 
 		$status = $command->execute( $input, $output );
 
@@ -317,12 +308,10 @@ class GenerateEquivsetTest extends TestCase {
 		[ $data, $dist ] = $this->mockFileSystem( $in );
 		$generator = new GenerateEquivset( $data->url(), $dist->url() );
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
-		$output->method( 'writeln' )
-			->withConsecutive(
-				[ $this->stringContains( 'maps to itself' ) ],
-				[ $this->stringContains( 'Finished with errors' ) ]
-			);
+		$output = $this->buildOutputInterfaceMock( [
+			'maps to itself',
+			'Finished with errors',
+		] );
 
 		$status = $generator->execute( $input, $output );
 		$this->assertSame( 1, $status );
@@ -341,6 +330,17 @@ class GenerateEquivsetTest extends TestCase {
 		$status = $generator->execute( $input, $output );
 		$this->assertSame( $out, require $dist->getChild( 'equivset.php' )->url() );
 		$this->assertSame( $txt, $dist->getChild( 'equivset.txt' )->getContent() );
+	}
+
+	private function buildOutputInterfaceMock( array $expectedWriteln ): MockObject {
+		$output = $this->createMock( OutputInterface::class );
+		$output->expects( $this->exactly( count( $expectedWriteln ) ) )
+			->method( 'writeln' )
+			->willReturnCallback( function ( $line ) use ( &$expectedWriteln ) {
+				$nextExpectedLine = array_shift( $expectedWriteln );
+				$this->assertStringContainsString( $nextExpectedLine, $line );
+			} );
+		return $output;
 	}
 
 	/**
