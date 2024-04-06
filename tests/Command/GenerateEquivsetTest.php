@@ -51,7 +51,7 @@ class GenerateEquivsetTest extends TestCase {
 		// Run generate command
 		$command = new GenerateEquivset( '', $dist->url() );
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
+		$output = $this->buildOutputInterfaceMock( [ 'Finished' ] );
 		$status = $command->execute( $input, $output );
 
 		// Compare the regenerated result against the current files
@@ -80,7 +80,7 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
+		$output = $this->buildOutputInterfaceMock( [ 'Finished' ] );
 
 		$status = $command->execute( $input, $output );
 
@@ -101,7 +101,7 @@ class GenerateEquivsetTest extends TestCase {
 		$command = new GenerateEquivset( '', $dist->url() );
 
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
+		$output = $this->buildOutputInterfaceMock( [ 'Finished' ] );
 
 		$status = $command->execute( $input, $output );
 
@@ -325,9 +325,10 @@ class GenerateEquivsetTest extends TestCase {
 		[ $data, $dist ] = $this->mockFileSystem( $in );
 		$generator = new GenerateEquivset( $data->url(), $dist->url() );
 		$input = $this->createMock( InputInterface::class );
-		$output = $this->createMock( OutputInterface::class );
+		$output = $this->buildOutputInterfaceMock( [ 'Finished' ] );
 
 		$status = $generator->execute( $input, $output );
+		$this->assertSame( 0, $status );
 		$this->assertSame( $out, require $dist->getChild( 'equivset.php' )->url() );
 		$this->assertSame( $txt, $dist->getChild( 'equivset.txt' )->getContent() );
 	}
