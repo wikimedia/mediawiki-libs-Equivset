@@ -28,10 +28,9 @@ use Traversable;
  */
 class EquivsetTest extends TestCase {
 
-	/** @var EquivsetInterface|null */
 	protected ?EquivsetInterface $equivset = null;
 
-	/** @var array */
+	/** @var array<string,string> */
 	protected array $data = [
 		'0' => 'O',
 	];
@@ -55,8 +54,6 @@ class EquivsetTest extends TestCase {
 	}
 
 	/**
-	 * @param string $userName Normalized Username.
-	 * @param string $spooferName Spoofer Username.
 	 * @dataProvider providePositives
 	 */
 	public function testCheckUnicodeString( string $userName, string $spooferName ) {
@@ -82,10 +79,7 @@ class EquivsetTest extends TestCase {
 		$equivset->all();
 	}
 
-	/**
-	 * @return Equivset
-	 */
-	protected function getEquivset() {
+	protected function getEquivset(): Equivset {
 		if ( !$this->equivset ) {
 			$this->equivset = new Equivset( $this->data );
 		}

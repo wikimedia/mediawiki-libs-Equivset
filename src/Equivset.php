@@ -32,9 +32,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	 */
 	protected array $data;
 
-	/**
-	 * @var string
-	 */
 	protected string $dataPath;
 
 	/**
@@ -49,9 +46,7 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	}
 
 	/**
-	 * Get the equivset.
-	 *
-	 * @return array<string,string> An associative array of equivalent characters.
+	 * {@inheritdoc}
 	 */
 	public function all(): array {
 		if ( !$this->data ) {
@@ -63,9 +58,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @param string $value The string to normalize against the equivset.
-	 * @return string
 	 */
 	public function normalize( string $value ): string {
 		$data = $this->all();
@@ -75,11 +67,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @param string $str1 The first string.
-	 * @param string $str2 The second string.
-	 *
-	 * @return bool
 	 */
 	public function isEqual( string $str1, string $str2 ): bool {
 		return $this->normalize( $str1 ) === $this->normalize( $str2 );
@@ -87,9 +74,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @param string $key The character that was used.
-	 * @return bool If the character has an equivalent.
 	 */
 	public function has( string $key ): bool {
 		$data = $this->all();
@@ -99,10 +83,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @param string $key The character that was used.
-	 * @return string The equivalent character.
-	 * @throws LogicException If character does not exist.
 	 */
 	public function get( string $key ): string {
 		$data = $this->all();
@@ -116,8 +96,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @return ArrayIterator The complete Equivset.
 	 */
 	public function getIterator(): ArrayIterator {
 		return new ArrayIterator( $this->all() );

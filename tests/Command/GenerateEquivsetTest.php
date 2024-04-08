@@ -220,8 +220,6 @@ class GenerateEquivsetTest extends TestCase {
 	 * Ensure that invalid UTF-8 characters results in a failure of the
 	 * generate-equivset command.
 	 *
-	 * @param string $in Equivset line
-	 *
 	 * @dataProvider provideInvalidChar
 	 */
 	public function testExecuteFailInvalidChar( string $in ) {

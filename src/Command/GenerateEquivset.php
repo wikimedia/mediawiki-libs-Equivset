@@ -63,11 +63,6 @@ class GenerateEquivset extends Command {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @param InputInterface $input Input.
-	 * @param OutputInterface $output Output.
-	 *
-	 * @return int Return status.
 	 */
 	public function execute( InputInterface $input, OutputInterface $output ) {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors
@@ -203,12 +198,7 @@ class GenerateEquivset extends Command {
 		return $exitStatus;
 	}
 
-	/**
-	 * @param string $a
-	 * @param string $b
-	 * @return int
-	 */
-	private static function compareCodePoints( string $a, string $b ) {
+	private static function compareCodePoints( string $a, string $b ): int {
 		if ( $a === '' ) {
 			return -1;
 		} elseif ( $b === '' ) {
