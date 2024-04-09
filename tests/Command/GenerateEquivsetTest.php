@@ -163,7 +163,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Provide Not Matching Code Points.
 	 */
-	public function provideNotMatchingCodePoints() {
+	public static function provideNotMatchingCodePoints() {
 		return [
 			[ 'left', '31', '31 0 => 4F O' ],
 			[ 'right', '4', '30 0 => 4 O' ],
@@ -207,7 +207,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Provide Invalid Chars
 	 */
-	public function provideInvalidChar() {
+	public static function provideInvalidChar() {
 		return [
 			[ '30 �� => 4F O' ],
 			[ '30 0 => 4F ��' ],

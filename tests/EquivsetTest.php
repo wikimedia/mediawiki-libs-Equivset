@@ -35,7 +35,7 @@ class EquivsetTest extends TestCase {
 		'0' => 'O',
 	];
 
-	public function providePositives() {
+	public static function providePositives() {
 		return [
 			// Format: username -> spoofing attempt
 			[ 'Laura Fiorucci', 'Låura Fiorucci' ],
