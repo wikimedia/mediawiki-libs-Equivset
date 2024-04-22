@@ -5,12 +5,20 @@
 	"homepage": "https://www.mediawiki.org/wiki/Equivset",
 	"authors": [
 		{
-			"name": "Brion Vibber",
+			"name": "Brooke Vibber",
 			"email": "bvibber@wikimedia.org"
 		},
 		{
 			"name": "David Barratt",
 			"email": "dbarratt@wikimedia.org"
+		},
+		{
+			"name": "Thiemo Kreuz",
+			"email": "thiemo.kreuz@wikimedia.de"
+		},
+		{
+			"name": "Umherirrender",
+			"email": "umherirrender_de.wp@web.de"
 		}
 	],
 	"autoload": {
