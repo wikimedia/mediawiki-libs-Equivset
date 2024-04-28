@@ -35,8 +35,6 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	protected string $dataPath;
 
 	/**
-	 * Equivset
-	 *
 	 * @param array<string,string> $data Equivalent Set
 	 * @param string $dataPath Path of the equivset array.
 	 */
@@ -45,9 +43,7 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 		$this->dataPath = $dataPath ?: __DIR__ . '/../dist/equivset.php';
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function all(): array {
 		if ( !$this->data ) {
 			$this->data = $this->load();
@@ -56,34 +52,26 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 		return $this->data;
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function normalize( string $value ): string {
 		$data = $this->all();
 
 		return strtr( $value, $data );
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function isEqual( string $str1, string $str2 ): bool {
 		return $this->normalize( $str1 ) === $this->normalize( $str2 );
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function has( string $key ): bool {
 		$data = $this->all();
 
 		return array_key_exists( $key, $data );
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function get( string $key ): string {
 		$data = $this->all();
 
@@ -94,9 +82,7 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 		return $data[$key];
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function getIterator(): ArrayIterator {
 		return new ArrayIterator( $this->all() );
 	}

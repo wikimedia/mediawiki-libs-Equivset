@@ -51,9 +51,7 @@ class GenerateEquivset extends Command {
 		$this->distDir = $distDir ?: __DIR__ . '/../../dist';
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	protected function configure() {
 		$this->setName( 'generate-equivset' );
 		$this->setDescription(
@@ -61,9 +59,7 @@ class GenerateEquivset extends Command {
 		);
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	/** {@inheritdoc} */
 	public function execute( InputInterface $input, OutputInterface $output ) {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors
 		$fp = @fopen( $this->dataDir . '/equivset.in', 'rb' );

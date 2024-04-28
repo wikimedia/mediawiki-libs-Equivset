@@ -61,8 +61,8 @@ class GenerateEquivsetTest extends TestCase {
 			'equivset.php',
 			'equivset.txt',
 		] as $filename ) {
-			$this->assertSame(
-				file_get_contents( __DIR__ . '/../../dist/' . $filename ),
+			$this->assertStringEqualsFile(
+				__DIR__ . '/../../dist/' . $filename,
 				$dist->getChild( $filename )->getContent(),
 				$filename . ' does not match equivset.in, run "composer generate"'
 			);
@@ -217,7 +217,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Test Execute Failure Invalid Character
 	 *
-	 * Ensure that invalid UTF-8 characters results in a failure of the
+	 * Ensure that invalid UTF-8 characters result in a failure of the
 	 * generate-equivset command.
 	 *
 	 * @dataProvider provideInvalidChar
