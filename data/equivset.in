@@ -1470,6 +1470,11 @@ F0C ༌ => F0B ་
 166D ᙭ => 58 X
 166E ᙮ => 58 X
 
+# Ogham
+# Range: 1680–169F
+# https://www.unicode.org/charts/PDF/U1680.pdf
+1680   => space
+
 # Runic
 # Range: 16A0–16FF
 # https://www.unicode.org/charts/PDF/U16A0.pdf
@@ -2943,6 +2948,7 @@ F0C ༌ => F0B ་
 # CJK Symbols and Punctuation
 # Range: 3000–303F
 # https://www.unicode.org/charts/PDF/U3000.pdf
+3000 　 => space
 3001 、 => 2C ,
 3002 。 => 2E .
 3003 〃 => 22 "
