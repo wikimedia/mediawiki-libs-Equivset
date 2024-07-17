@@ -1499,6 +1499,11 @@ F0C ༌ => F0B ་
 # Mongolian
 # Range: 1800–18AF
 # https://www.unicode.org/charts/PDF/U1800.pdf
+180B ᠋ => invisible
+180C ᠌ => invisible
+180D ᠍ => invisible
+180E ᠎ => invisible
+180F ᠏ => invisible
 1810 ᠐ => 30 0
 1896 ᢖ => 185C ᡜ
 
