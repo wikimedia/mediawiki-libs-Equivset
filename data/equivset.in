@@ -1036,6 +1036,7 @@ FF ÿ => 178 Ÿ
 # Arabic
 # Range: 0600–06FF
 # https://www.unicode.org/charts/PDF/U0600.pdf
+61C ؜ => invisible
 61F ؟ => 2E2E ⸮
 639 ع => 45 E
 64A ي => 649 ى
