@@ -46,3 +46,6 @@ $all = $equivset->all();
 All changes should be made to `./data/equivset.in`. Then run
 `bin/console generate-equivset` to generate the JSON, PHP, and plain
 text versions of the equivset in `./dist`.
+
+When releasing, update HISTORY.md with `git log --format='* %s (%aN)' --topo-order`
+to consistently list commits.
