@@ -345,7 +345,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * @return array{vfsStreamDirectory,vfsStreamDirectory}
 	 */
-	private function mockFileSystem( string $in = null ): array {
+	private function mockFileSystem( ?string $in = null ): array {
 		$root = vfsStream::setup();
 		$data = vfsStream::newDirectory( 'data' )->at( $root );
 		$dist = vfsStream::newDirectory( 'dist' )->at( $root );
