@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +37,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Test Configuration
 	 */
-	public function testConfigure() {
+	public function testConfigure(): void {
 		$command = new GenerateEquivset();
 
 		$this->assertEquals( 'generate-equivset', $command->getName() );
@@ -44,7 +46,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Test regenerated files
 	 */
-	public function testRegeneratedDist() {
+	public function testRegeneratedDist(): void {
 		// Define a temp storage for the regenerated files
 		[ , $dist ] = $this->mockFileSystem();
 
@@ -72,7 +74,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Test Mocked Execute.
 	 */
-	public function testExecute() {
+	public function testExecute(): void {
 		$in = "# Testing...\n30 0 => 4F O";
 
 		[ $data, $dist ] = $this->mockFileSystem( $in );
@@ -94,7 +96,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Test Live Execute.
 	 */
-	public function testLiveExecute() {
+	public function testLiveExecute(): void {
 		// Write the output to memory.
 		[ , $dist ] = $this->mockFileSystem();
 
@@ -119,7 +121,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Test Execute Fail Open
 	 */
-	public function testExecuteFailOpen() {
+	public function testExecuteFailOpen(): void {
 		[ $data, $dist ] = $this->mockFileSystem();
 
 		$command = new GenerateEquivset( $data->url(), $dist->url() );
@@ -138,7 +140,7 @@ class GenerateEquivsetTest extends TestCase {
 	 * Ensure that malformed input data results in a failure of the
 	 * generate-equivset command.
 	 */
-	public function testExecuteFailMalformed() {
+	public function testExecuteFailMalformed(): void {
 		$in = "0 => 4F O";
 		$out = [
 			0 => 'O',
@@ -163,7 +165,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Provide Not Matching Code Points.
 	 */
-	public static function provideNotMatchingCodePoints() {
+	public static function provideNotMatchingCodePoints(): iterable {
 		return [
 			[ 'left', '31', '31 0 => 4F O' ],
 			[ 'right', '4', '30 0 => 4 O' ],
@@ -182,7 +184,7 @@ class GenerateEquivsetTest extends TestCase {
 	 *
 	 * @dataProvider provideNotMatchingCodePoints
 	 */
-	public function testExecuteFailNotMatchingCodepoint( string $side, string $number, string $in ) {
+	public function testExecuteFailNotMatchingCodepoint( string $side, string $number, string $in ): void {
 		$out = [
 			0 => 'O',
 		];
@@ -207,7 +209,7 @@ class GenerateEquivsetTest extends TestCase {
 	/**
 	 * Provide Invalid Chars
 	 */
-	public static function provideInvalidChar() {
+	public static function provideInvalidChar(): iterable {
 		return [
 			[ '30 �� => 4F O' ],
 			[ '30 0 => 4F ��' ],
@@ -222,7 +224,7 @@ class GenerateEquivsetTest extends TestCase {
 	 *
 	 * @dataProvider provideInvalidChar
 	 */
-	public function testExecuteFailInvalidChar( string $in ) {
+	public function testExecuteFailInvalidChar( string $in ): void {
 		$out = [
 			0 => 'O',
 		];
@@ -249,7 +251,7 @@ class GenerateEquivsetTest extends TestCase {
 	 *
 	 * Ensure duplicate chars in the file are detected
 	 */
-	public function testExecuteFailDuplicateChar() {
+	public function testExecuteFailDuplicateChar(): void {
 		$in = "30 0 => 53 S\n30 0 => 4F O";
 		$out = [
 			0 => 'O',
@@ -277,7 +279,7 @@ class GenerateEquivsetTest extends TestCase {
 	 *
 	 * Ensure ordered out chars in the file are detected
 	 */
-	public function testExecuteFailOrderChar() {
+	public function testExecuteFailOrderChar(): void {
 		$in = "35 5 => 53 S\n30 0 => 4F O";
 		$out = [
 			0 => 'O',
@@ -300,7 +302,7 @@ class GenerateEquivsetTest extends TestCase {
 		$this->assertNotEquals( $out, require $dist->getChild( 'equivset.php' )->url() );
 	}
 
-	public function testMappingToSelf() {
+	public function testMappingToSelf(): void {
 		$in = "41 A => 41 A";
 
 		[ $data, $dist ] = $this->mockFileSystem( $in );
@@ -315,7 +317,7 @@ class GenerateEquivsetTest extends TestCase {
 		$this->assertSame( 1, $status );
 	}
 
-	public function testCircularMappings() {
+	public function testCircularMappings(): void {
 		$in = "41 A => 61 a\n61 a => 41 A";
 		$out = [ 'A' => 'a' ];
 		$txt = "a A\n";

@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,12 +32,13 @@ class EquivsetCompletenessTest extends TestCase {
 	 * For each letter the lower and upper case letter should be part of the set
 	 * This test can fail on newer php version due to changes in the underlying Unicode mapping (T292552)
 	 */
-	public function testIncludeUpperLower() {
+	public function testIncludeUpperLower(): void {
 		$equivset = new Equivset();
 		$data = $equivset->all();
 
 		$missing = '';
 		foreach ( $data as $char => $replacement ) {
+			$char = (string)$char;
 			$ucChar = mb_strtoupper( $char );
 			// Skip when the corresponding character is a composite and not an individual codepoint
 			if ( mb_strlen( $ucChar ) === 1
@@ -63,7 +66,7 @@ class EquivsetCompletenessTest extends TestCase {
 		$this->assertSame( '', $missing );
 	}
 
-	public function testLowercaseStrictlyEqualsUppercase() {
+	public function testLowercaseStrictlyEqualsUppercase(): void {
 		$inputMap = [];
 
 		$fp = fopen( __DIR__ . '/../data/equivset.in', 'rb' );

@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +34,7 @@ class Equivset implements EquivsetInterface, IteratorAggregate {
 	 */
 	protected array $data;
 
-	protected string $dataPath;
+	protected readonly string $dataPath;
 
 	/**
 	 * @param array<string,string> $data Equivalent Set

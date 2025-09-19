@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,18 +27,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Generate Equivset Command.
+ *
+ * @internal
  */
 class GenerateEquivset extends Command {
 
-	/**
-	 * @var string
-	 */
-	protected string $dataDir;
-
-	/**
-	 * @var string
-	 */
-	protected string $distDir;
+	protected readonly string $dataDir;
+	protected readonly string $distDir;
 
 	/**
 	 * Generate Equivset
@@ -52,7 +49,7 @@ class GenerateEquivset extends Command {
 	}
 
 	/** {@inheritdoc} */
-	protected function configure() {
+	protected function configure(): void {
 		$this->setName( 'generate-equivset' );
 		$this->setDescription(
 			'Generate the JSON, PHP, and plain text versions of the equivset in `./dist`'
@@ -60,7 +57,7 @@ class GenerateEquivset extends Command {
 	}
 
 	/** {@inheritdoc} */
-	public function execute( InputInterface $input, OutputInterface $output ) {
+	public function execute( InputInterface $input, OutputInterface $output ): int {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors
 		$fp = @fopen( $this->dataDir . '/equivset.in', 'rb' );
 		if ( $fp === false ) {

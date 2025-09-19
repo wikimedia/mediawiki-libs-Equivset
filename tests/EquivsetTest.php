@@ -1,4 +1,6 @@
 <?php
+declare( strict_types = 1 );
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,12 +33,11 @@ class EquivsetTest extends TestCase {
 
 	protected ?EquivsetInterface $equivset = null;
 
-	/** @var array<string,string> */
-	protected array $data = [
+	private const DATA = [
 		'0' => 'O',
 	];
 
-	public static function providePositives() {
+	public static function providePositives(): iterable {
 		return [
 			// Format: username -> spoofing attempt
 			[ 'Laura Fiorucci', 'Låura Fiorucci' ],
@@ -57,23 +58,23 @@ class EquivsetTest extends TestCase {
 	/**
 	 * @dataProvider providePositives
 	 */
-	public function testCheckUnicodeString( string $userName, string $spooferName ) {
+	public function testCheckUnicodeString( string $userName, string $spooferName ): void {
 		$equivset = new Equivset();
 
 		$this->assertTrue( $equivset->isEqual( $userName, $spooferName ) );
 	}
 
-	public function testLoadPhp() {
+	public function testLoadPhp(): void {
 		$root = vfsStream::setup();
 		$file = vfsStream::newFile( 'equivset.php' )
-			->withContent( '<?php return ' . var_export( $this->data, true ) . ';' )
+			->withContent( '<?php return ' . var_export( self::DATA, true ) . ';' )
 			->at( $root );
 		$equivset = new Equivset( [], $file->url() );
 
-		$this->assertEquals( $this->data, $equivset->all() );
+		$this->assertEquals( self::DATA, $equivset->all() );
 	}
 
-	public function testLoadFailNoPhpFile() {
+	public function testLoadFailNoPhpFile(): void {
 		$root = vfsStream::setup();
 		$equivset = new Equivset( [], $root->url() . '/missing.php' );
 		try {
@@ -93,48 +94,48 @@ class EquivsetTest extends TestCase {
 
 	protected function getEquivset(): Equivset {
 		if ( !$this->equivset ) {
-			$this->equivset = new Equivset( $this->data );
+			$this->equivset = new Equivset( self::DATA );
 		}
 
 		return $this->equivset;
 	}
 
-	public function testAll() {
+	public function testAll(): void {
 		$data = $this->getEquivset()->all();
 		$this->assertEquals( 'O', $data[0] );
 	}
 
-	public function testNormalize() {
+	public function testNormalize(): void {
 		$this->assertEquals( 'O', $this->getEquivset()->normalize( '0' ) );
 	}
 
-	public function testIsEqual() {
+	public function testIsEqual(): void {
 		$this->assertTrue( $this->getEquivset()->isEqual( '0', '0' ) );
 	}
 
-	public function testTraversable() {
+	public function testTraversable(): void {
 		$this->assertInstanceOf( Traversable::class, $this->getEquivset() );
 	}
 
-	public function testGetIterator() {
+	public function testGetIterator(): void {
 		$data = $this->getEquivset()->getIterator();
 		$this->assertEquals( 'O', $data[0] );
 		$this->assertInstanceOf( Traversable::class, $data );
 	}
 
-	public function testHas() {
+	public function testHas(): void {
 		$this->assertTrue( $this->getEquivset()->has( '0' ) );
 	}
 
-	public function testHasNot() {
+	public function testHasNot(): void {
 		$this->assertFalse( $this->getEquivset()->has( 'fail' ) );
 	}
 
-	public function testGet() {
+	public function testGet(): void {
 		$this->assertEquals( 'O', $this->getEquivset()->get( '0' ) );
 	}
 
-	public function testGetFail() {
+	public function testGetFail(): void {
 		$this->expectException( LogicException::class );
 		$this->getEquivset()->get( 'fail' );
 	}
