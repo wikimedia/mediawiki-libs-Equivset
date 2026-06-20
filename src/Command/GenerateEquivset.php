@@ -159,12 +159,12 @@ class GenerateEquivset extends Command {
 		file_put_contents( $this->distDir . '/equivset.php', self::generatePHP( $setsByChar, $header ) );
 
 		// Text File.
-		uksort( $sets, [ self::class, 'compareCodePoints' ] );
+		uksort( $sets, self::compareCodePoints( ... ) );
 		touch( $this->distDir . '/equivset.txt' );
 		$textFile = fopen( $this->distDir . '/equivset.txt', 'w' );
 		foreach ( $sets as $members ) {
 			$setName = array_shift( $members );
-			usort( $members, [ self::class, 'compareCodePoints' ] );
+			usort( $members, self::compareCodePoints( ... ) );
 			fwrite( $textFile, $setName . ' ' . implode( ' ', $members ) . "\n" );
 		}
 		fclose( $textFile );
